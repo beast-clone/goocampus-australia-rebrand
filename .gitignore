@@ -1,0 +1,5 @@
+# macOS noise (exFAT drives create these)
+._*
+.DS_Store
+.Spotlight-V100
+.Trashes
