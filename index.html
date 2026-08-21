@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="has-js">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +49,6 @@
   body { background:#F4EEE1; color:#12211C; -webkit-font-smoothing:antialiased; }
 
   /* Scroll-reveal initial state — only applied when JS is present (progressive enhancement) */
-  .has-js [data-reveal]{ opacity:0; transform:translateY(26px); }
 
   /* Duotone brand treatment so photography reads on-brand and premium (softened so faces/scene stay legible) */
   .duotone{ filter:grayscale(.5) contrast(1.03) brightness(.99); }
@@ -84,7 +83,6 @@
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
-    .has-js [data-reveal]{ opacity:1 !important; transform:none !important; }
     .marquee-track{ animation:none; }
     .btn:hover{ transform:none; }
   }
@@ -567,7 +565,11 @@
   // Scroll reveal via GSAP ScrollTrigger (motivated: sequences content in as it enters view).
   // Honors prefers-reduced-motion by leaving content visible and static.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealAll = () => document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  const revealAll = () => {
+    // Kill first: a live tween would otherwise write its stale value back on the next tick.
+    if (window.gsap) gsap.killTweensOf('[data-reveal]');
+    document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  };
   function loadGSAP(cb){
     const s1 = document.createElement('script'); s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
     s1.onerror = revealAll; // CDN failed -> never leave content hidden
@@ -576,26 +578,51 @@
       s2.onerror = revealAll; s2.onload = cb; document.head.appendChild(s2); };
     document.head.appendChild(s1);
   }
-  // Absolute fail-safe: if anything is still hidden after 2.6s, show it.
-  setTimeout(revealAll, 2600);
   if (reduce) {
     revealAll();
   } else {
     loadGSAP(() => {
       gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('[data-reveal]').forEach((el) => {
+
+      const els = gsap.utils.toArray('[data-reveal]');
+      // Hide only now. Until this line runs the content is visible, so a blocked CDN,
+      // disabled JS, or a script error can never leave the page blank.
+      gsap.set(els, { opacity: 0, y: 26 });
+
+      els.forEach((el) => {
         gsap.to(el, {
           opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          // Plays once, but without `once: true` — that self-destructs the trigger, and a
+          // refresh (late images, font swap, resize) can kill an in-flight tween and strand
+          // the element part-way visible.
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
         });
       });
+
+      // Recompute offsets once images have settled the layout.
+      ScrollTrigger.refresh();
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+
+      // Watchdog: anything on screen should have played by now. Reveal only those, so
+      // below-the-fold content keeps its scroll reveal.
+      setTimeout(() => {
+        els.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0 && parseFloat(getComputedStyle(el).opacity) < 0.99) {
+            gsap.killTweensOf(el);
+            el.style.opacity = 1; el.style.transform = 'none';
+          }
+        });
+      }, 3000);
       // Count-up on the stat strip (feedback: makes the proof land)
       gsap.utils.toArray('[data-count]').forEach((el) => {
         const end = parseFloat(el.dataset.count);
         const obj = { v: 0 };
+        const write = (v) => { el.textContent = Number.isInteger(end) ? Math.round(v) : v.toFixed(1); };
         gsap.to(obj, { v: end, duration: 1.4, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-          onUpdate: () => { el.textContent = Number.isInteger(end) ? Math.round(obj.v) : obj.v.toFixed(1); } });
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+          onUpdate: () => write(obj.v),
+          onComplete: () => write(end) });  // land exactly on the stated figure, never a partial
       });
     });
   }
