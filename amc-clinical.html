@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Australia AMC Clinical Prep | GooCampus Australia</title>
+<meta name="description" content="Clear the AMC Clinical examination with a live online intensive course built closely on the official AMC format, plus recorded lectures across every assessed domain." />
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    container: { center: true, padding: '1.5rem', screens: { '2xl': '1200px' } },
+    extend: {
+      colors: {
+        ink:    '#0A0A0A',
+        body:   '#5B5B5B',
+        accent: '#FF3C00',   // brand mark, rules, non-text uses
+        cta:    '#D93000',   // filled buttons carrying white text — passes AA where #FF3C00 does not
+        paper:  '#F7F7F5',
+        line:   'rgba(0,0,0,.08)',
+      },
+      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+      borderRadius: { btn: '12px', card: '16px', xl2: '24px' },
+    },
+  },
+}
+</script>
+<style>
+  :root { color-scheme: light; }
+  html { scroll-behavior: smooth; }
+  body { background:#F7F7F5; color:#0A0A0A; font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+         font-variation-settings:'opsz' 16; -webkit-font-smoothing:antialiased; }
+
+  /* Trillo scale — H1 90/90/-4px w500 · H2 48/57.6/-2px w500 · body 16/27.2 */
+  .display { font-variation-settings:'opsz' 32; font-weight:500; }
+  .t-h1 { font-size:clamp(2.75rem,7.1vw,90px); line-height:1.0;  letter-spacing:-0.044em; }
+  .t-h2 { font-size:clamp(2rem,3.9vw,48px);    line-height:1.2;  letter-spacing:-0.042em; }
+  .t-h3 { font-size:clamp(1.25rem,1.7vw,22px); line-height:1.35; letter-spacing:-0.02em; }
+  .t-pillar { font-size:clamp(1.75rem,3vw,38px); line-height:1.15; letter-spacing:-0.032em; font-weight:500; }
+  .lead { font-size:18px; line-height:30px; color:#5B5B5B; max-width:62ch; }
+  p.copy { font-size:16px; line-height:27.2px; color:#5B5B5B; max-width:68ch; }
+
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+         height:52px; padding:0 22px; border-radius:12px; font-size:15px; font-weight:600;
+         white-space:nowrap; transition:background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.16,1,.3,1); }
+  .btn:active { transform:translateY(1px); }
+  .btn-cta   { background:#D93000; color:#fff; }
+  .btn-cta:hover { background:#BF2A00; }
+  .btn-ink   { background:#0A0A0A; color:#fff; }
+  .btn-ink:hover { background:#262626; }
+  .btn-ghost { background:#fff; color:#0A0A0A; border:1px solid rgba(0,0,0,.12); }
+  .btn-ghost:hover { border-color:rgba(0,0,0,.28); }
+  .btn-sm { height:44px; padding:0 20px; font-size:14px; }
+
+  .chip { display:inline-flex; align-items:center; gap:.5rem; min-height:40px; padding:8px 16px;
+          border-radius:100px; background:#fff; border:1px solid rgba(0,0,0,.08);
+          font-size:14px; font-weight:500; color:#0A0A0A; text-align:left; }
+  .chip svg { flex:none; }
+
+  .rule { border-top:1px solid rgba(0,0,0,.08); }
+
+  /* Photography, tinted into the paper/accent system. PLACEHOLDERS — swap for real GooCampus photography. */
+  /* Photography is presented clean. The previous grayscale + dark multiply overlay
+     existed so white text could sit on top; nothing overlays this image, so it only
+     muted the photo. Grading is baked into the file instead of applied at runtime,
+     so no CSS filter here — a filter would double-process what is already graded. */
+  .photo { }
+  .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E9E9E6; }
+  /* Hairline edge only — keeps the image crisp against the page without tinting it. */
+  .photo-wrap::before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(10,10,10,.08); }
+
+  /* The one authored motion moment: the hero resolves from soft focus on load.
+     Everything below the fold is static — no repeated per-section entrance.
+     The resting state is VISIBLE; the entrance is animated *from* hidden. Nothing
+     CSS-hides content waiting on JS, so a throttled or failed animation cannot strand it. */
+  .rise-in { animation:rise .9s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes rise { from { opacity:0; transform:translateY(14px); filter:blur(6px); } }
+
+  /* Feedback: the smallest change that makes cause and result unmistakable. */
+  .lift { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1); }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(10,10,10,.4); }
+  /* Scrolled state signals itself through shadow and surface, not height —
+     animating height forces layout on every frame for no visual gain. */
+  #nav { transition: box-shadow .3s cubic-bezier(.16,1,.3,1), background-color .3s; }
+  #nav.condensed { background-color: rgba(247,247,245,.96); box-shadow: 0 10px 30px -24px rgba(10,10,10,.65); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .rise-in { animation:none !important; }
+    .lift:hover { transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement -->
+<div id="announce" class="relative bg-ink px-6 py-2.5 text-center text-[13px] text-white/90">
+  <span>Australia AMC Clinical Prep — <span class="font-semibold text-white">live online intensive, built on the official AMC format</span></span>
+  <button onclick="document.getElementById('announce').remove()" aria-label="Dismiss announcement"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+
+<!-- Nav -->
+<header id="nav" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-xl">
+  <div class="container flex h-[72px] items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span class="grid h-9 w-9 place-items-center rounded-btn bg-accent text-white"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.5"/><path d="M21 9.5v4.2"/></svg></span>
+      <span class="display text-[18px] tracking-tight">GooCampus Australia</span>
+    </a>
+    <nav class="hidden items-center gap-8 lg:flex">
+      <a href="#top" class="text-[15px] text-body transition hover:text-ink">Home</a>
+      <a href="#program" class="text-[15px] text-body transition hover:text-ink">AMC Clinical Prep</a>
+      <a href="#beyond" class="text-[15px] text-body transition hover:text-ink">Full pathway</a>
+      <a href="#contact" class="text-[15px] text-body transition hover:text-ink">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-ink btn-sm hidden sm:inline-flex">Schedule Free Consultation</a>
+      <button id="navToggle" class="grid h-11 w-11 place-items-center rounded-btn border border-line bg-white lg:hidden" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden border-t border-line bg-white lg:hidden">
+    <div class="container flex flex-col py-3">
+      <a href="#top" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">Home</a>
+      <a href="#program" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">AMC Clinical Prep</a>
+      <a href="#beyond" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">Full pathway</a>
+      <a href="#contact" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">Contact</a>
+      <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-ink mt-2">Schedule Free Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="py-14 lg:py-20">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      <div class="rise-in">
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>Stage two of the AMC Standard Pathway</span>
+        <h1 class="display t-h1 mt-6 text-ink">Clear the AMC Clinical exam.</h1>
+        <p class="lead mt-6">Clear the difficult AMC clinical exam with our live online intensive course, based closely on the official AMC format. Access to pre-recorded lectures that cover multiple skills &amp; domains.</p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-cta w-full sm:w-auto">Book Free Consultation</a>
+          <a href="https://wa.me/917483524565?text=I&#39;d%20like%20more%20information%20about%20the%20Australia%20AMC%20Clinical%20Prep%20course." target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full sm:w-auto">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>Send us a WhatsApp
+          </a>
+        </div>
+        <p class="mt-6 text-[14px] text-body">Rated 4.9 out of 5 &nbsp;|&nbsp; Trusted by 300+ doctors from India</p>
+      </div>
+      <div class="photo-wrap rise-in">
+        <img src="assets/doctors-hero.jpg" alt="Doctors preparing for the AMC clinical examination" class="photo h-full w-full object-cover" loading="eager" width="1200" height="900">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- Domains covered -->
+<section id="program" class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[20ch] text-ink">Every domain the clinical exam assesses.</h2>
+    <p class="lead mt-5">Live sessions across each area, with recorded lectures you can return to as often as you need.</p>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M12 13v4M10 15h4"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">General Medicine</h3>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">Obstetrics</h3>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v9M9 18h6"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">Gynecology</h3>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2a4.5 4.5 0 00-4.5 4.5c0 .8-.5 1.3-1 2A4 4 0 007 15v3a3 3 0 003 3h1V2z"/><path d="M14.5 2a4.5 4.5 0 014.5 4.5c0 .8.5 1.3 1 2A4 4 0 0117 15v3a3 3 0 01-3 3h-1"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">Psychiatry</h3>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0113 0"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">Pediatrics</h3>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-7">
+        <span class="grid h-10 w-10 place-items-center rounded-btn bg-paper text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2v6a3.5 3.5 0 007 0V2"/><path d="M8 11.5V15a5 5 0 0010 0v-1"/><circle cx="18" cy="12" r="2"/></svg></span>
+        <h3 class="display t-h3 mt-5 text-ink">Physical Examination</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- How it runs -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <h2 class="display t-h2 text-ink">How the course runs.</h2>
+        <p class="copy mt-5">Built closely on the official AMC format, so the room you practise in is the room you sit in.</p>
+        <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-ink mt-7 w-full sm:w-auto">Schedule Free Consultation</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="lift rounded-card border border-line bg-white p-7">
+          <h3 class="display t-h3 text-ink">Live online intensive</h3>
+          <p class="copy mt-3">Taught live, online, so you can prepare from wherever you are without pausing your posting.</p>
+        </div>
+        <div class="lift rounded-card border border-line bg-white p-7">
+          <h3 class="display t-h3 text-ink">Built on the official format</h3>
+          <p class="copy mt-3">The course structure follows the official AMC clinical examination format closely.</p>
+        </div>
+        <div class="lift rounded-card border border-line bg-white p-7">
+          <h3 class="display t-h3 text-ink">Recorded lectures</h3>
+          <p class="copy mt-3">Pre-recorded lectures covering multiple skills and domains, available to revisit at your own pace.</p>
+        </div>
+        <div class="lift rounded-card border border-line bg-white p-7">
+          <h3 class="display t-h3 text-ink">Australia-based faculty</h3>
+          <p class="copy mt-3">Learn from physicians who have completed the pathway themselves and now teach it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- Beyond the exam -->
+<section id="beyond" class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[22ch] text-ink">The exam is one step. We cover the rest of the pathway too.</h2>
+    <p class="lead mt-5">Clinical prep sits inside our Post Graduate Consulting Program — take it on its own, or as part of the full journey.</p>
+
+    <div class="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3">
+      <div class="lift rounded-card border border-line bg-white p-8">
+        <h3 class="display t-h3 text-ink">Mentorship &amp; Job Support</h3>
+        <p class="copy mt-3">Learn from Australia-based physicians who have successfully completed the pathway, offering personalized mentorship throughout your journey.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>One-to-one personalized mentorship</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Crafting a perfect CV and cover letter</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Understanding the Australian selection process</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Comprehensive communication skills training</span></li>
+        </ul>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-8">
+        <h3 class="display t-h3 text-ink">Portfolio Building</h3>
+        <p class="copy mt-3">Start building a strong job-ready portfolio for the Australia AMC pathway. A structured &amp; fast-tracked program that helps you gain valuable CPD points.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Australia recognized ALS course</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Audit &amp; QIP</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Medical conference presentations</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Research paper publication</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>BMJ CPD access</span></li>
+        </ul>
+      </div>
+      <div class="lift rounded-card border border-line bg-white p-8">
+        <h3 class="display t-h3 text-ink">Value-added services</h3>
+        <p class="copy mt-3">It&rsquo;s more than just coaching. Here are some additional services that make up our comprehensive program.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b class="font-semibold text-ink">Premium Consulting:</b> 1-on-1 consulting &amp; strategy.</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b class="font-semibold text-ink">English Proficiency:</b> IELTS/OET/PTE training.</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b class="font-semibold text-ink">Visa &amp; Logistics:</b> Full visa support &amp; application.</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b class="font-semibold text-ink">CV Building:</b> CV writing, review &amp; templates.</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><b class="font-semibold text-ink">Job Guidance:</b> Job strategies &amp; interview prep.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- Stories -->
+<section id="stories" class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[20ch] text-ink">Trusted by thousands of doctors in India</h2>
+    <div class="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3">
+      <figure class="rounded-card border border-line bg-white p-7">
+        <blockquote class="text-[17px] leading-relaxed text-ink">&ldquo;Amazing experience with GooCampus for AMC MCQ prep. Thanks to Dr. Balan &amp; team for guidance and support.&rdquo;</blockquote>
+        <figcaption class="mt-6 text-[14px]"><span class="font-semibold text-ink">Dr. Bhargavi N</span><br><span class="text-body">Australia AMC Aspirant</span></figcaption>
+      </figure>
+      <figure class="rounded-card border border-line bg-white p-7">
+        <blockquote class="text-[17px] leading-relaxed text-ink">&ldquo;Grateful for GooCampus&rsquo; support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.&rdquo;</blockquote>
+        <figcaption class="mt-6 text-[14px]"><span class="font-semibold text-ink">Dr. Jasmine Kaur</span><br><span class="text-body">Australia AMC Aspirant</span></figcaption>
+      </figure>
+      <figure class="rounded-card border border-line bg-white p-7">
+        <blockquote class="text-[17px] leading-relaxed text-ink">&ldquo;GooCampus helped me tremendously in AMC exam prep. Weekly check-ins and right materials led to success.&rdquo;</blockquote>
+        <figcaption class="mt-6 text-[14px]"><span class="font-semibold text-ink">Dr. Gunjala Rohith</span><br><span class="text-body">Australia AMC Aspirant</span></figcaption>
+      </figure>
+      <figure class="rounded-card border border-line bg-white p-7">
+        <blockquote class="text-[17px] leading-relaxed text-ink">&ldquo;GooCampus is professional and organized. My daughter cleared AMC-1 on her first attempt, thanks to the team.&rdquo;</blockquote>
+        <figcaption class="mt-6 text-[14px]"><span class="font-semibold text-ink">Dr. Bhavesh Swarnkar</span><br><span class="text-body">Australia AMC Aspirant</span></figcaption>
+      </figure>
+      <figure class="rounded-card border border-line bg-white p-7">
+        <blockquote class="text-[17px] leading-relaxed text-ink">&ldquo;Exceptional experience with GooCampus. Faculty provided personalized attention and feedback.&rdquo;</blockquote>
+        <figcaption class="mt-6 text-[14px]"><span class="font-semibold text-ink">Dr. Bavleen</span><br><span class="text-body">Australia AMC Aspirant</span></figcaption>
+      </figure>
+      <figure class="rounded-card border border-dashed border-line bg-paper p-7">
+        <blockquote class="text-[17px] leading-relaxed text-body">Rated <b class="text-ink">4.9 out of 5</b> by <b class="text-ink">300+ doctors</b> from India who have trained with us on the Australia AMC pathway.</blockquote>
+        <figcaption class="mt-6"><a href="https://goocampus.fillout.com/goocampus-free-consultation" class="text-[15px] font-semibold text-cta hover:underline">Book your free consultation &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- Enrol -->
+<section id="pricing" class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[18ch] text-ink">Join the next AMC Clinical batch</h2>
+    <p class="lead mt-5">Talk to us about dates, fees and whether the standalone course or the full pathway fits you better.</p>
+
+    <div class="mt-10 overflow-hidden rounded-card bg-ink lg:mt-12">
+      <div class="grid gap-10 p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:p-12">
+        <div>
+          <h3 class="display t-h3 text-white">Australia AMC Clinical Prep</h3>
+          <p class="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-zinc-300">Live online intensive built closely on the official AMC clinical format, with recorded lectures across every assessed domain.</p>
+          <div class="mt-7 flex items-baseline gap-3">
+            <span class="display text-[38px] leading-none tracking-tight text-white">Fees on request</span>
+          </div>
+          <p class="mt-3 text-[14px] text-zinc-500">Message us for the current batch dates and fee.</p>
+          <a href="https://wa.me/917483524565?text=I&#39;m%20very%20interested%20in%20the%20Australia%20AMC%20Clinical%20Prep%20course%20and%20would%20like%20to%20know%20the%20dates%2C%20fees%20and%20enrollment%20process." target="_blank" rel="noopener noreferrer" class="btn btn-cta mt-8 w-full sm:w-auto">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+            Send us a WhatsApp
+          </a>
+        </div>
+        <div class="lg:border-l lg:border-white/10 lg:pl-16">
+          <div class="text-[13px] font-semibold uppercase tracking-[.08em] text-zinc-500">Key things to note:</div>
+          <ul class="mt-5 space-y-3.5">
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Live online intensive course</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Based closely on the official AMC format</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Pre-recorded lectures across multiple skills &amp; domains</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Six domains: Medicine, Obstetrics, Gynecology, Psychiatry, Pediatrics, Physical Examination</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Available standalone or inside the full PGCP pathway</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="contact" class="py-12 lg:py-16">
+  <div class="container">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <h2 class="display t-h2 text-ink">Have a question? We are here to answer.</h2>
+        <p class="copy mt-5">Still confused? Don&rsquo;t worry, just reach out.</p>
+        <a href="https://wa.me/917483524565?text=I&#39;d%20like%20more%20information%20about%20the%20Australia%20AMC%20Clinical%20Prep%20course%20that&#39;s%20mentioned%20on%20your%20website." target="_blank" rel="noopener noreferrer" class="btn btn-ink mt-7 w-full sm:w-auto"><svg class="shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>Send us a WhatsApp</a>
+      </div>
+      <div class="divide-y divide-line border-t border-line">
+        <details class="acc py-6" open>
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">What does this course cover?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">The course covers General Medicine, Obstetrics, Gynecology, Psychiatry, Pediatrics and Physical Examination, taught live online and supported by pre-recorded lectures across multiple skills and domains.</p></div></div>
+        </details>
+        <details class="acc py-6">
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">Is the course live, or recorded?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">Both. It is a live online intensive course, and you also get access to pre-recorded lectures you can work through at your own pace.</p></div></div>
+        </details>
+        <details class="acc py-6">
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">How closely does it follow the real exam?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">The course is built closely on the official AMC clinical examination format, so the structure you practise in mirrors the structure you sit in.</p></div></div>
+        </details>
+        <details class="acc py-6">
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">Can I get full pathway support as well?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">Yes. Alongside the standalone course we also offer the Post Graduate Consulting Program, which adds mentorship, portfolio building, CV and interview preparation, English proficiency training, and full visa and logistics support.</p></div></div>
+        </details>
+        <details class="acc py-6">
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">Who teaches the course?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">Australia-based physicians who have completed the AMC pathway themselves, and who mentor International Medical Graduates through it.</p></div></div>
+        </details>
+        <details class="acc py-6">
+          <summary class="flex items-center justify-between gap-6"><span class="text-[18px] font-semibold text-ink">What does it cost, and when is the next batch?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="acc-panel overflow-hidden"><div class="max-w-[62ch] pt-4"><p class="text-[16px] leading-relaxed text-body">Message us on WhatsApp or book a free consultation and we will share the current batch dates and fee, along with whether the standalone course or the full pathway suits you better.</p></div></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <div class="rounded-xl2 bg-ink px-8 py-16 text-center lg:px-16 lg:py-20">
+      <h2 class="display t-h2 mx-auto max-w-[16ch] text-white">Ready to start your AMC journey?</h2>
+      <div class="mt-9 flex justify-center">
+        <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-cta w-full sm:w-auto">Schedule Free Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-line bg-white py-12 lg:py-16">
+  <div class="container">
+    <div class="grid gap-12 lg:grid-cols-[1.5fr_1fr_1.2fr]">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="grid h-9 w-9 place-items-center rounded-btn bg-accent text-white"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.5"/><path d="M21 9.5v4.2"/></svg></span>
+          <span class="display text-[18px] tracking-tight text-ink">GooCampus Australia</span>
+        </div>
+        <p class="copy mt-5 max-w-[42ch]">Guiding International Medical Graduates through the Australia AMC Standard Pathway, from first consultation to first posting.</p>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[.08em] text-ink">Explore</h3>
+        <ul class="mt-5 space-y-3">
+          <li><a href="#top" class="text-[15px] text-body transition hover:text-accent">Home</a></li>
+          <li><a href="#program" class="text-[15px] text-body transition hover:text-accent">AMC Clinical Prep</a></li>
+          <li><a href="index-v3.html" class="text-[15px] text-body transition hover:text-accent">AMC MCQ Coaching</a></li>
+          <li><a href="#pricing" class="text-[15px] text-body transition hover:text-accent">Enrol</a></li>
+          <li><a href="#contact" class="text-[15px] text-body transition hover:text-accent">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[.08em] text-ink">Get in touch</h3>
+        <ul class="mt-5 space-y-3">
+          <li><a href="https://goocampus.fillout.com/goocampus-free-consultation" class="text-[15px] text-body transition hover:text-accent">Schedule Free Consultation</a></li>
+          <li>
+            <a href="https://wa.me/917483524565?text=I&#39;d%20like%20more%20information%20about%20the%20Australia%20AMC%20Clinical%20Prep%20course%20that&#39;s%20mentioned%20on%20your%20website." target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 text-[15px] text-body transition hover:text-accent">
+              <svg class="shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>Send us a WhatsApp
+            </a>
+          </li>
+          <li><a href="mailto:info@goocampus.in" class="text-[15px] text-body transition hover:text-accent">info@goocampus.in</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule mt-14 flex flex-col gap-2 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-[14px] text-body">© 2026 GooCampus Australia. All rights reserved.</p>
+      <p class="text-[14px] text-body">AMC Standard Pathway guidance for IMGs.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+  t && t.addEventListener('click', () => {
+    const open = m.classList.toggle('hidden') === false;
+    t.setAttribute('aria-expanded', String(open));
+  });
+  m && m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    m.classList.add('hidden'); t.setAttribute('aria-expanded', 'false');
+  }));
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav condenses once you leave the hero — continuity, not decoration.
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('condensed', window.scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---- Accordion: animate height so opening/closing is legible instead of snapping ----
+  document.querySelectorAll('details.acc').forEach(d => {
+    const panel = d.querySelector('.acc-panel');
+    if (!panel) return;
+    if (d.open) panel.style.height = 'auto';
+    else panel.style.height = '0px';
+    d.addEventListener('click', (e) => {
+      if (!e.target.closest('summary')) return;
+      e.preventDefault();
+      const opening = !d.open;
+      if (opening) {
+        d.open = true;
+        const h = panel.scrollHeight;
+        panel.style.height = '0px';
+        panel.animate([{ height: '0px' }, { height: h + 'px' }],
+          { duration: reduce ? 0 : 320, easing: 'cubic-bezier(.16,1,.3,1)' })
+          .onfinish = () => { panel.style.height = 'auto'; };
+      } else {
+        const h = panel.scrollHeight;
+        panel.animate([{ height: h + 'px' }, { height: '0px' }],
+          { duration: reduce ? 0 : 240, easing: 'cubic-bezier(.4,0,1,1)' })
+          .onfinish = () => { panel.style.height = '0px'; d.open = false; };
+      }
+    });
+  });
+
+  // ---- The hero entrance. Pure CSS, and the resting state is already visible,
+  //      so a failed or throttled animation can never strand the content. ----
+  const risers = document.querySelectorAll('.rise');
+  const play = () => risers.forEach(el => el.classList.add('rise-in'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(play); else play();
+
+  // `animation-fill-mode: both` applies the from-state (opacity 0) before the animation
+  // starts, so a throttled or never-started animation would strand the hero invisible.
+  // This runs regardless of GSAP and clears the animation if it has not resolved.
+  setTimeout(() => {
+    risers.forEach(el => {
+      if (parseFloat(getComputedStyle(el).opacity) < 0.99) {
+        el.style.animation = 'none';
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+        el.style.filter = 'none';
+      }
+    });
+  }, 1800);
+
+  // ---- Scroll-linked motion. Progressive enhancement only: nothing below is
+  //      required for the page to be readable, and nothing is hidden until GSAP
+  //      is confirmed loaded. ----
+  function loadGSAP(cb) {
+    const s1 = document.createElement('script');
+    s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+    s1.onerror = () => {};
+    s1.onload = () => {
+      const s2 = document.createElement('script');
+      s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+      s2.onerror = () => {}; s2.onload = cb;
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s1);
+  }
+
+  if (!reduce) loadGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Depth on the hero image: the scroll relationship IS the meaning here.
+    const art = document.getElementById('heroArt');
+    if (art) gsap.fromTo(art, { yPercent: -6, scale: 1.1 }, {
+      yPercent: 6, scale: 1.1, ease: 'none',
+      scrollTrigger: { trigger: art.closest('figure'), start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+
+    // Reveals are driven by IntersectionObserver, not ScrollTrigger.
+    // ScrollTrigger caches element positions and needs refresh() when layout shifts;
+    // if those positions go stale the callback never fires and the content stays
+    // invisible. IntersectionObserver asks the browser directly, so it cannot
+    // desynchronise from layout. GSAP still does the actual animating.
+    const revealTargets = gsap.utils.toArray('#program .lift, #stories figure, section .rule');
+
+    if (revealTargets.length && 'IntersectionObserver' in window) {
+      gsap.set(revealTargets, { opacity: 0, y: 16 });
+
+      const io = new IntersectionObserver((entries, obs) => {
+        const batch = entries.filter(e => e.isIntersecting).map(e => e.target);
+        if (!batch.length) return;
+        gsap.to(batch, {
+          opacity: 1, y: 0, duration: .55, ease: 'power3.out',
+          stagger: Math.min(.06, .4 / batch.length), overwrite: true
+        });
+        batch.forEach(el => obs.unobserve(el));
+      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+
+      revealTargets.forEach(el => io.observe(el));
+    }
+
+    // Deliberately NOT animating the price. A count-up makes the figure read as a
+    // different number while it runs (caught at "AU$ 51" in testing), and a price is
+    // something a visitor must be able to read correctly at any instant.
+
+    // Late images change layout; recompute rather than firing against stale offsets.
+    addEventListener('load', () => ScrollTrigger.refresh());
+
+    // Safety net: anything on screen should have revealed by now.
+    setTimeout(() => {
+      revealTargets.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < innerHeight && r.bottom > 0 && parseFloat(getComputedStyle(el).opacity) < 0.99) {
+          gsap.killTweensOf(el);
+          el.style.opacity = 1; el.style.transform = 'none';
+        }
+      });
+    }, 3000);
+  });
+</script>
+</body>
+</html>
