@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GooCampus Australia | Become a Doctor in Australia via the AMC Pathway</title>
+<meta name="description" content="End-to-end guidance for International Medical Graduates, from AMC coaching to your first hospital job." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    container: { center: true, padding: '1.5rem', screens: { '2xl': '1200px' } },
+    extend: {
+      colors: {
+        ink:    '#0A0A0A',
+        body:   '#5B5B5B',
+        accent: '#FF3C00',   // brand mark, rules, non-text uses
+        cta:    '#D93000',   // filled buttons carrying white text — passes AA where #FF3C00 does not
+        paper:  '#F7F7F5',
+        line:   'rgba(0,0,0,.08)',
+      },
+      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+      borderRadius: { btn: '12px', card: '16px', xl2: '24px' },
+    },
+  },
+}
+</script>
+<style>
+  :root { color-scheme: light; }
+  html { scroll-behavior: smooth; }
+  body { background:#F7F7F5; color:#0A0A0A; font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+         font-variation-settings:'opsz' 16; -webkit-font-smoothing:antialiased; }
+
+  /* Trillo scale — H1 90/90/-4px w500 · H2 48/57.6/-2px w500 · body 16/27.2 */
+  .display { font-variation-settings:'opsz' 32; font-weight:500; }
+  .t-h1 { font-size:clamp(2.75rem,7.1vw,90px); line-height:1.0;  letter-spacing:-0.044em; }
+  .t-h2 { font-size:clamp(2rem,3.9vw,48px);    line-height:1.2;  letter-spacing:-0.042em; }
+  .t-h3 { font-size:clamp(1.25rem,1.7vw,22px); line-height:1.35; letter-spacing:-0.02em; }
+  .lead { font-size:18px; line-height:30px; color:#5B5B5B; max-width:62ch; }
+  p.copy { font-size:16px; line-height:27.2px; color:#5B5B5B; max-width:68ch; }
+
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+         height:52px; padding:0 22px; border-radius:12px; font-size:15px; font-weight:600;
+         white-space:nowrap; transition:background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.16,1,.3,1); }
+  .btn:active { transform:translateY(1px); }
+  .btn-cta   { background:#D93000; color:#fff; }
+  .btn-cta:hover { background:#BF2A00; }
+  .btn-ink   { background:#0A0A0A; color:#fff; }
+  .btn-ink:hover { background:#262626; }
+  .btn-ghost { background:#fff; color:#0A0A0A; border:1px solid rgba(0,0,0,.12); }
+  .btn-ghost:hover { border-color:rgba(0,0,0,.28); }
+  .btn-sm { height:44px; padding:0 20px; font-size:14px; }
+
+  .chip { display:inline-flex; align-items:center; gap:.5rem; min-height:40px; padding:8px 16px;
+          border-radius:100px; background:#fff; border:1px solid rgba(0,0,0,.08);
+          font-size:14px; font-weight:500; color:#0A0A0A; text-align:left; }
+  .chip svg { flex:none; }
+
+  .rule { border-top:1px solid rgba(0,0,0,.08); }
+
+  /* Photography, tinted into the paper/accent system. PLACEHOLDERS — swap for real GooCampus photography. */
+  .photo { filter:grayscale(.32) contrast(1.04); }
+  .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E9E9E6; }
+  .photo-wrap::after { content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(155deg, rgba(10,10,10,.34), rgba(10,10,10,.02) 58%, rgba(255,60,0,.18));
+    mix-blend-mode:multiply; }
+  .photo-wrap::before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); }
+
+  /* The one authored motion moment: the hero resolves from soft focus on load.
+     Everything below the fold is static — no repeated per-section entrance.
+     The resting state is VISIBLE; the entrance is animated *from* hidden. Nothing
+     CSS-hides content waiting on JS, so a throttled or failed animation cannot strand it. */
+  .rise-in { animation:rise .9s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes rise { from { opacity:0; transform:translateY(14px); filter:blur(6px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .rise-in { animation:none !important; }
+  }
+</style>
+</head>
+<body>
+<script>document.body.classList.add('has-js')</script>
+
+<!-- Announcement -->
+<div id="announce" class="relative bg-ink px-6 py-2.5 text-center text-[13px] text-white/90">
+  <span>Now enrolling: Australia AMC MCQ Coaching Program</span>
+  <span class="mx-2 text-white/35">·</span>
+  <span class="font-semibold text-white">New batch begins 20 May</span>
+  <button onclick="document.getElementById('announce').remove()" aria-label="Dismiss announcement"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+
+<!-- Nav -->
+<header id="nav" class="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-xl">
+  <div class="container flex h-[72px] items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-accent text-[14px] font-bold text-white">G</span>
+      <span class="display text-[18px] tracking-tight">GooCampus Australia</span>
+    </a>
+    <nav class="hidden items-center gap-8 lg:flex">
+      <a href="#why" class="text-[15px] text-body transition hover:text-ink">Why Australia</a>
+      <a href="#program" class="text-[15px] text-body transition hover:text-ink">The Program</a>
+      <a href="#coaching" class="text-[15px] text-body transition hover:text-ink">AMC Coaching</a>
+      <a href="#stories" class="text-[15px] text-body transition hover:text-ink">Success Stories</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="#start" class="btn btn-ink btn-sm hidden sm:inline-flex">Book Free Consultation</a>
+      <button id="navToggle" class="grid h-11 w-11 place-items-center rounded-btn border border-line bg-white lg:hidden" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden border-t border-line bg-white lg:hidden">
+    <div class="container flex flex-col py-3">
+      <a href="#why" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">Why Australia</a>
+      <a href="#program" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">The Program</a>
+      <a href="#coaching" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">AMC Coaching</a>
+      <a href="#stories" class="rounded-btn px-3 py-3 text-[15px] hover:bg-paper">Success Stories</a>
+      <a href="#start" class="btn btn-ink mt-2">Book Free Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="pt-16 pb-12 lg:pt-24 lg:pb-16">
+  <div class="container text-center">
+    <h1 class="rise display t-h1 mx-auto max-w-[15ch] text-ink" style="animation-delay:.05s">
+      Become a doctor in&nbsp;Australia.
+    </h1>
+    <p class="rise lead mx-auto mt-7 text-center" style="animation-delay:.16s">
+      End-to-end guidance for International Medical Graduates, from AMC coaching to your first hospital job.
+    </p>
+    <div class="rise mt-9 flex flex-wrap items-center justify-center gap-3" style="animation-delay:.26s">
+      <a href="#start" class="btn btn-cta w-full sm:w-auto">Book Free Consultation</a>
+      <a href="#program" class="btn btn-ghost w-full sm:w-auto">Explore the program</a>
+    </div>
+    <div class="rise mt-10 flex flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center" style="animation-delay:.36s">
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>90+ hrs structured AMC coaching</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>3 months exam-focused mentorship</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.4.8-4.7 4.3 1.2 6.3L12 17l-5.5 3 1.2-6.3L3 9.4l6.4-.8z"/></svg>4.9/5 from 300+ doctors trained across India</span>
+    </div>
+  </div>
+</section>
+
+<!-- Centrepiece photography -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <!-- PLACEHOLDER IMAGE — replace with real GooCampus / Australian hospital photography -->
+    <figure class="rise photo-wrap aspect-[21/9] shadow-[0_24px_60px_-32px_rgba(10,10,10,.45)]" style="animation-delay:.46s">
+      <img id="heroArt" class="photo h-full w-full object-cover object-center" fetchpriority="high" decoding="async"
+           alt="An Australian hospital setting"
+           src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=2000&h=860&q=80&auto=format&fit=crop" />
+    </figure>
+  </div>
+</section>
+
+<!-- Proof -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <div class="rule grid gap-y-10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:pr-8">
+        <div class="display text-[40px] leading-none tracking-tight text-ink">4.9<span class="text-body">/5</span></div>
+        <p class="mt-2.5 text-[15px] text-body">average program rating</p>
+      </div>
+      <div class="lg:border-l lg:border-line lg:pl-8 lg:pr-8">
+        <div class="display text-[40px] leading-none tracking-tight text-ink">300<span class="text-accent">+</span></div>
+        <p class="mt-2.5 text-[15px] text-body">doctors guided from India</p>
+      </div>
+      <div class="lg:border-l lg:border-line lg:pl-8 lg:pr-8">
+        <div class="display text-[40px] leading-none tracking-tight text-ink">90<span class="text-accent">+</span></div>
+        <p class="mt-2.5 text-[15px] text-body">hours of live coaching</p>
+      </div>
+      <div class="lg:border-l lg:border-line lg:pl-8">
+        <div class="display text-[40px] leading-none tracking-tight text-ink">1 program</div>
+        <p class="mt-2.5 text-[15px] text-body">coaching to job, end to end</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Australia -->
+<section id="why" class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[18ch] text-ink">A country that actively wants international medical graduates.</h2>
+
+    <div class="mt-10 grid gap-x-12 gap-y-10 lg:mt-12 lg:grid-cols-3">
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Growing demand and real support</h3>
+        <p class="copy mt-3">An ageing population and steady healthcare growth mean high demand for doctors, especially GPs and rural specialists. Government incentives for regional roles open strong opportunities for IMGs across specialties, research and management.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Rewarding careers</h3>
+        <p class="copy mt-3">Competitive remuneration, clear progression and one of the most respected healthcare systems in the world.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Balanced lifestyle</h3>
+        <p class="copy mt-3">Strong protections around working hours and leave make room for a life outside the hospital, not just inside it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The PGCP -->
+<section id="program" class="py-12 lg:py-16">
+  <div class="container">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+      <div>
+        <h2 class="display t-h2 text-ink">One expert-managed program for the entire journey.</h2>
+        <p class="copy mt-6">The Post Graduate Consulting Program brings coaching, portfolio, visa, accommodation and interview prep under a single roof, so nothing about your move to Australia is left to guesswork.</p>
+        <a href="#start" class="btn btn-ink mt-8 w-full sm:w-auto">Talk to an advisor</a>
+
+        <!-- PLACEHOLDER IMAGE — replace with a real GooCampus coaching session -->
+        <figure class="photo-wrap mt-10 aspect-[16/10]">
+          <img class="photo h-full w-full object-cover" loading="lazy" decoding="async"
+               alt="Doctors preparing for the AMC clinical examination"
+               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1000&h=625&q=80&auto=format&fit=crop" />
+        </figure>
+      </div>
+
+      <div class="flex flex-col gap-8">
+        <div class="rule pt-7">
+          <h3 class="display t-h3 text-ink">All-in-one guidance</h3>
+          <p class="copy mt-3">A single, expert-managed program covering everything from coaching and portfolio building to visa, accommodation and interview preparation.</p>
+        </div>
+        <div class="rule pt-7">
+          <h3 class="display t-h3 text-ink">Job-ready portfolio</h3>
+          <p class="copy mt-3">Walk into interviews with a structured, timetable-based portfolio designed to strengthen your candidacy and your confidence.</p>
+        </div>
+        <div class="rule pt-7">
+          <h3 class="display t-h3 text-ink">Time saved, job supported</h3>
+          <p class="copy mt-3">Avoid common pitfalls, refine your CV and cover letter, understand Australian selection criteria and sharpen communication, saving time, money and effort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMC coaching -->
+<section id="coaching" class="bg-white py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[20ch] text-ink">Everything the AMC pathway asks of you, taught by people who have done it.</h2>
+
+    <div class="mt-10 grid items-start lg:mt-12 gap-12 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-14">
+      <div>
+        <h3 class="display t-h3 text-ink">AMC MCQ preparation</h3>
+        <p class="copy mt-4">Learn from Australia-based faculty who specialise in training IMGs for the competitive AMC MCQ. Ninety-plus hours of combined coaching across three months, with weekly mentorship and revision strategy.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Overview session with a senior physician</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Clarity on what to study, and what to skip</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Proven study materials and MCQ bank</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Live, discussion-based Q&amp;A sessions</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="display t-h3 text-ink">AMC clinical preparation</h3>
+        <p class="copy mt-4">Clear the demanding AMC clinical exam with a live, online intensive built closely around the official format, plus pre-recorded lectures spanning every domain and skill you will be tested on.</p>
+        <div class="mt-6 flex flex-wrap gap-2.5">
+          <span class="chip">General Medicine</span>
+          <span class="chip">Obstetrics</span>
+          <span class="chip">Psychiatry</span>
+          <span class="chip">Gynaecology</span>
+          <span class="chip">Paediatrics</span>
+          <span class="chip">Physical Exam</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="display t-h3 text-ink">Mentorship and job support</h3>
+        <p class="copy mt-4">Learn from Australia-based physicians who have completed the pathway themselves, with personalised mentorship at every stage of your journey.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>One-to-one, personalised mentorship</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>A CV and cover letter built to Australian standards</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>A clear read on the selection process</li>
+          <li class="flex gap-3 text-[15px] text-ink"><svg class="mt-1 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Comprehensive communication-skills training</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="display t-h3 text-ink">Portfolio building</h3>
+        <p class="copy mt-4">Build a strong, job-ready portfolio for the Australia AMC pathway through a structured, fast-tracked program that helps you earn valuable CPD points.</p>
+        <dl class="mt-6 divide-y divide-line border-t border-line">
+          <div class="flex flex-wrap items-baseline gap-x-3 py-3.5">
+            <dt class="text-[15px] font-semibold text-ink">ALS course</dt>
+            <dd class="text-[15px] text-body">Australia-recognised certification.</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-3 py-3.5">
+            <dt class="text-[15px] font-semibold text-ink">Audit and QIP</dt>
+            <dd class="text-[15px] text-body">Quality-improvement projects.</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-3 py-3.5">
+            <dt class="text-[15px] font-semibold text-ink">Conference talks</dt>
+            <dd class="text-[15px] text-body">Medical presentations.</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-3 py-3.5">
+            <dt class="text-[15px] font-semibold text-ink">Research papers</dt>
+            <dd class="text-[15px] text-body">Publication support.</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-3 py-3.5">
+            <dt class="text-[15px] font-semibold text-ink">BMJ CPD access</dt>
+            <dd class="text-[15px] text-body">Ongoing learning credits.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mentorship band -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <!-- PLACEHOLDER IMAGE — replace with real GooCampus mentorship photography -->
+    <figure class="photo-wrap aspect-[21/9]">
+      <img class="photo h-full w-full object-cover object-center" loading="lazy" decoding="async"
+           alt="A mentor guiding a junior doctor"
+           src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&h=860&q=80&auto=format&fit=crop" />
+      <figcaption class="absolute inset-x-0 bottom-0 z-[3] p-8 lg:p-12">
+        <p class="display t-h3 max-w-[30ch] text-white">Learn from Australia-based physicians who have completed the pathway themselves, with personalised mentorship at every stage of your journey.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Beyond coaching -->
+<section class="py-12 lg:py-16">
+  <div class="container">
+    <h2 class="display t-h2 max-w-[16ch] text-ink">The support that turns a plan into a posting.</h2>
+
+    <div class="mt-10 grid lg:mt-12 gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Premium consulting</h3>
+        <p class="copy mt-3">One-to-one consulting and strategy for your specific pathway.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Expert mentorship</h3>
+        <p class="copy mt-3">Regular sessions with physicians who have walked the pathway.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">English proficiency</h3>
+        <p class="copy mt-3">Focused IELTS, OET and PTE training for medical candidates.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Visa and logistics</h3>
+        <p class="copy mt-3">Full visa support and application guidance, start to finish.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">CV building</h3>
+        <p class="copy mt-3">Writing, review and templates tuned to Australian selection.</p>
+      </div>
+      <div class="rule pt-7">
+        <h3 class="display t-h3 text-ink">Job guidance</h3>
+        <p class="copy mt-3">Application strategy and structured interview preparation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Success stories -->
+<section id="stories" class="bg-white py-12 lg:py-16">
+  <div class="container">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <h2 class="display t-h2 max-w-[16ch] text-ink">Trusted by doctors who are now on their way.</h2>
+      <p class="text-[15px] text-body">4.9/5 from 300+ doctors trained across India</p>
+    </div>
+  </div>
+
+  <div class="container mt-10 lg:mt-12">
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-6">
+      <figure class="flex flex-col rounded-card border border-line bg-paper p-8 lg:col-span-2">
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Amazing experience for AMC MCQ prep. Thanks to Dr. Balan and the team for their guidance and support.”</blockquote>
+        <figcaption class="mt-auto pt-7">
+          <div class="text-[15px] font-semibold text-ink">Dr. Bhargavi N</div>
+          <div class="mt-1 text-[14px] text-body">Australia AMC aspirant</div>
+        </figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-card border border-line bg-paper p-8 lg:col-span-2">
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Grateful for the support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.”</blockquote>
+        <figcaption class="mt-auto pt-7">
+          <div class="text-[15px] font-semibold text-ink">Dr. Jasmine Kaur</div>
+          <div class="mt-1 text-[14px] text-body">Australia AMC aspirant</div>
+        </figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-card bg-ink p-8 lg:col-span-2">
+        <blockquote class="text-[17px] leading-relaxed text-white">“Weekly check-ins and the right materials led me to success. GooCampus helped me tremendously.”</blockquote>
+        <figcaption class="mt-auto pt-7">
+          <div class="text-[15px] font-semibold text-white">Dr. Gunjala Rohith</div>
+          <div class="mt-1 text-[14px] text-white/60">Australia AMC aspirant</div>
+        </figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-card border border-line bg-paper p-8 lg:col-span-3">
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Professional and organised. My daughter cleared AMC-1 on her first attempt, thanks to the team.”</blockquote>
+        <figcaption class="mt-auto pt-7">
+          <div class="text-[15px] font-semibold text-ink">Dr. Bhavesh Swarnkar</div>
+          <div class="mt-1 text-[14px] text-body">Australia AMC aspirant</div>
+        </figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-card border border-line bg-paper p-8 lg:col-span-3">
+        <blockquote class="text-[17px] leading-relaxed text-ink">“An exceptional experience. The faculty gave personalised attention and genuinely useful feedback.”</blockquote>
+        <figcaption class="mt-auto pt-7">
+          <div class="text-[15px] font-semibold text-ink">Dr. Bavleen</div>
+          <div class="mt-1 text-[14px] text-body">Australia AMC aspirant</div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Start -->
+<section id="start" class="py-12 lg:py-16">
+  <div class="container">
+    <div class="rounded-xl2 bg-ink px-8 py-16 text-center lg:px-16 lg:py-24">
+      <h2 class="display t-h2 mx-auto max-w-[16ch] text-white">Ready to start your AMC journey?</h2>
+      <p class="mx-auto mt-6 max-w-[54ch] text-[17px] leading-relaxed text-white/70">
+        Book a free consultation and get a clear, honest read on your fastest route to practising medicine in Australia.
+      </p>
+      <div class="mt-9 flex justify-center">
+        <a href="mailto:info@goocampus.in" class="btn btn-cta w-full sm:w-auto">Book Free Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-line bg-white py-16">
+  <div class="container">
+    <div class="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="grid h-8 w-8 place-items-center rounded-lg bg-accent text-[14px] font-bold text-white">G</span>
+          <span class="display text-[18px] tracking-tight text-ink">GooCampus Australia</span>
+        </div>
+        <p class="copy mt-5 max-w-[44ch]">Guiding International Medical Graduates through the Australia AMC Standard Pathway, from first consultation to first posting.</p>
+      </div>
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[.08em] text-ink">Explore</h3>
+        <ul class="mt-5 space-y-3">
+          <li><a href="#why" class="text-[15px] text-body transition hover:text-accent">Why Australia</a></li>
+          <li><a href="#program" class="text-[15px] text-body transition hover:text-accent">The PGCP program</a></li>
+          <li><a href="#coaching" class="text-[15px] text-body transition hover:text-accent">AMC coaching</a></li>
+          <li><a href="#stories" class="text-[15px] text-body transition hover:text-accent">Success stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[.08em] text-ink">Get started</h3>
+        <ul class="mt-5 space-y-3">
+          <li><a href="#start" class="text-[15px] text-body transition hover:text-accent">Book free consultation</a></li>
+          <li><a href="#coaching" class="text-[15px] text-body transition hover:text-accent">AMC MCQ coaching</a></li>
+          <li><a href="mailto:info@goocampus.in" class="text-[15px] text-body transition hover:text-accent">info@goocampus.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rule mt-14 flex flex-col gap-2 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-[14px] text-body">© 2026 GooCampus Australia. All rights reserved.</p>
+      <p class="text-[14px] text-body">AMC Standard Pathway guidance for IMGs.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+  t && t.addEventListener('click', () => {
+    const open = m.classList.toggle('hidden') === false;
+    t.setAttribute('aria-expanded', String(open));
+  });
+  m && m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    m.classList.add('hidden'); t.setAttribute('aria-expanded', 'false');
+  }));
+
+  // The single authored moment: the hero resolves from soft focus once fonts are ready.
+  // Pure CSS animation — nothing scroll-driven can strand it part-way.
+  // Content is already visible; this only adds the entrance. Safe to skip entirely.
+  const play = () => document.querySelectorAll('.rise').forEach(el => el.classList.add('rise-in'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(play); else play();
+</script>
+</body>
+</html>
