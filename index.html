@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GooCampus Australia | Become a Doctor in Australia via the AMC Pathway</title>
-<meta name="description" content="End-to-end guidance for International Medical Graduates — AMC MCQ and clinical coaching, portfolio building, visa support and job placement in Australia." />
+<meta name="description" content="End-to-end guidance for International Medical Graduates â€” AMC MCQ and clinical coaching, portfolio building, visa support and job placement in Australia." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +17,8 @@ tailwind.config = {
     container: { center: true, padding: '1.25rem', screens: { '2xl': '1210px' } },
     extend: {
       colors: {
-        flame: { DEFAULT: '#FD3A25', bright: '#FF4D00', deep: '#D92E1B' },
-        ink: '#09090B',
+        flame: { DEFAULT: '#FF3C00', bright: '#FF3C00', deep: '#D93000' },
+        ink: '#0A0A0A',
       },
       fontFamily: {
         display: ['Urbanist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -37,9 +37,9 @@ tailwind.config = {
 <style>
   :root { color-scheme: light; }
   html { scroll-behavior: smooth; }
-  body { background:#F4F4F5; color:#09090B; font-family:'Urbanist',ui-sans-serif,system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  body { background:#F7F7F5; color:#0A0A0A; font-family:'Urbanist',ui-sans-serif,system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
 
-  /* Reference type scale — H1 82/82/-1.8 · H2 58/72/-2.16 · H4 36/48/-0.36 */
+  /* Reference type scale â€” H1 82/82/-1.8 Â· H2 58/72/-2.16 Â· H4 36/48/-0.36 */
   .t-h1 { font-size:clamp(2.6rem,6.6vw,82px); line-height:1.0;   letter-spacing:-0.022em; font-weight:600; }
   .t-h2 { font-size:clamp(2rem,4.6vw,58px);   line-height:1.24;  letter-spacing:-0.037em; font-weight:600; }
   .t-h4 { font-size:clamp(1.5rem,2.6vw,36px); line-height:1.333; letter-spacing:-0.01em;  font-weight:600; }
@@ -48,30 +48,30 @@ tailwind.config = {
 
   .has-js [data-reveal] { opacity:0; transform:translateY(26px); }
 
-  /* Pill button — 52px tall, 14/24 padding, 100px radius (matches reference) */
+  /* Pill button â€” 52px tall, 14/24 padding, 100px radius (matches reference) */
   .btn { height:52px; padding:0 24px; border-radius:100px; display:inline-flex; align-items:center; justify-content:center;
          gap:.5rem; font-size:15px; font-weight:500; white-space:nowrap;
          transition:transform .18s cubic-bezier(.16,1,.3,1), background-color .18s, color .18s, box-shadow .18s; }
   .btn:hover { transform:translateY(-2px); }
   .btn:active { transform:translateY(0) scale(.985); }
   .btn-dark  { background:#272727; color:#fff; box-shadow:0 2.77px 2.21px rgba(0,0,0,.12), 0 3px 3px rgba(0,0,0,.14); }
-  .btn-dark:hover { background:#09090B; }
+  .btn-dark:hover { background:#0A0A0A; }
   .btn-light { background:#F5F5F5; color:#18181B; box-shadow:0 2.77px 2.21px rgba(0,0,0,.10), 0 3px 3px rgba(0,0,0,.08); }
   .btn-light:hover { background:#fff; }
-  .btn-flame { background:#FD3A25; color:#fff; box-shadow:0 8px 24px -8px rgba(253,58,37,.6); }
-  .btn-flame:hover { background:#D92E1B; }
+  .btn-flame { background:#FF3C00; color:#fff; box-shadow:0 8px 24px -8px rgba(255,60,0,.6); }
+  .btn-flame:hover { background:#D93000; }
 
   .eyebrow { display:inline-flex; align-items:center; gap:.5rem; height:34px; padding:0 16px; border-radius:100px;
              background:#fff; border:1px solid #E4E4E7; font-size:13px; font-weight:500; color:#3F3F46;
              box-shadow:0 2px 6px rgba(0,0,0,.05); }
 
-  /* Hero render — full-bleed 3D art with a white veil so 82px type stays readable over it */
+  /* Hero render â€” full-bleed 3D art with a white veil so 82px type stays readable over it */
   .hero-art { position:absolute; inset:0; overflow:hidden; }
   .hero-art img { width:100%; height:100%; object-fit:cover; object-position:78% 88%; transform:scale(1.18); will-change:transform; }
   .hero-veil { position:absolute; inset:0;
     background:
       radial-gradient(52% 40% at 50% 40%, rgba(255,255,255,.97), rgba(255,255,255,.72) 55%, rgba(255,255,255,0) 80%),
-      linear-gradient(to bottom, rgba(255,255,255,.94) 0%, rgba(255,255,255,.38) 30%, rgba(244,244,245,.62) 78%, #F4F4F5 100%); }
+      linear-gradient(to bottom, rgba(255,255,255,.94) 0%, rgba(255,255,255,.38) 30%, rgba(247,247,245,.62) 78%, #F7F7F5 100%); }
 
   /* Contextual photography, tinted into the zinc/flame system so it reads as one page.
      PLACEHOLDERS: swap these Unsplash URLs for real GooCampus photography. */
@@ -85,12 +85,12 @@ tailwind.config = {
   /* Faculty avatars. Deliberately monograms, not stock faces: these are real named people,
      so a stranger's photo would misrepresent them. Drop real headshots in as <img> here. */
   .avatar { position:relative; display:grid; place-items:center; border-radius:9999px;
-            background:linear-gradient(160deg,#FFF 0%,#F4F4F5 100%);
+            background:linear-gradient(160deg,#FFF 0%,#F7F7F5 100%);
             box-shadow:0 10px 26px -14px rgba(9,9,11,.4), inset 0 0 0 1px rgba(9,9,11,.06); }
   .avatar::after { content:""; position:absolute; inset:-6px; border-radius:9999px;
                    border:1.5px dashed rgba(253,58,37,.28); }
   .avatar span { font-size:26px; font-weight:600; letter-spacing:-.02em;
-                 background:linear-gradient(180deg,#BA1E0D,#FF3B26); -webkit-background-clip:text;
+                 background:linear-gradient(180deg,#BF2A00,#FF3C00); -webkit-background-clip:text;
                  background-clip:text; color:transparent; }
 
   .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
@@ -108,7 +108,7 @@ tailwind.config = {
     .hero-art img { object-position:70% 92%; transform:scale(1.35); }
     .hero-veil { background:
       radial-gradient(70% 44% at 50% 42%, rgba(255,255,255,.97), rgba(255,255,255,.84) 62%, rgba(255,255,255,.35) 88%),
-      linear-gradient(to bottom, rgba(255,255,255,.95) 0%, rgba(255,255,255,.62) 34%, rgba(244,244,245,.80) 78%, #F4F4F5 100%); }
+      linear-gradient(to bottom, rgba(255,255,255,.95) 0%, rgba(255,255,255,.62) 34%, rgba(247,247,245,.80) 78%, #F7F7F5 100%); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -203,7 +203,7 @@ tailwind.config = {
 
         <div data-reveal class="mt-8"><a href="#contact" class="btn btn-dark">Talk to an advisor</a></div>
 
-        <!-- PLACEHOLDER IMAGE — replace with real GooCampus / Australian hospital photography -->
+        <!-- PLACEHOLDER IMAGE â€” replace with real GooCampus / Australian hospital photography -->
         <figure data-reveal class="photo-tint photo-frame relative mt-12 aspect-[16/10] overflow-hidden rounded-5xl shadow-card">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async"
                alt="An Australian hospital setting"
@@ -237,7 +237,7 @@ tailwind.config = {
     <div data-reveal class="rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5 lg:p-12">
       <div class="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
         <p class="max-w-[520px] text-[19px] leading-relaxed text-zinc-500">
-          Trusted by <span class="font-semibold text-ink">300+ doctors</span> across India —
+          Trusted by <span class="font-semibold text-ink">300+ doctors</span> across India â€”
           taking IMGs from AMC MCQ to a hospital posting in Australia.
         </p>
         <div class="flex flex-wrap items-center gap-10">
@@ -257,17 +257,17 @@ tailwind.config = {
       <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-flame/25 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-flame/10 blur-3xl"></div>
       <p class="t-h4 relative mx-auto max-w-[820px] font-medium text-white">
-        “A good pathway feels obvious — because the hard part was planned for you.”
+        â€œA good pathway feels obvious â€” because the hard part was planned for you.â€
       </p>
       <div class="relative mt-8">
         <div class="text-[16px] font-semibold text-white">Dr. Balan</div>
-        <div class="label mt-1 text-zinc-500">GooCampus Australia · Lead Faculty</div>
+        <div class="label mt-1 text-zinc-500">GooCampus Australia Â· Lead Faculty</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ACCORDION (01–04) ============ -->
+<!-- ============ SERVICES ACCORDION (01â€“04) ============ -->
 <section id="program" class="py-20 lg:py-28">
   <div class="container">
     <div data-reveal class="mb-10"><span class="eyebrow">The Program</span></div>
@@ -276,10 +276,10 @@ tailwind.config = {
         <h2 data-reveal class="t-h2 text-ink">End-to-End<br />AMC Guidance</h2>
         <p data-reveal class="mt-6 max-w-[420px] text-[16px] leading-relaxed text-zinc-500">
           The Post Graduate Consulting Program brings coaching, portfolio, visa, accommodation
-          and interview prep under a single roof — so nothing about your move is left to guesswork.
+          and interview prep under a single roof â€” so nothing about your move is left to guesswork.
         </p>
 
-        <!-- PLACEHOLDER IMAGE — replace with a real GooCampus coaching session -->
+        <!-- PLACEHOLDER IMAGE â€” replace with a real GooCampus coaching session -->
         <figure data-reveal class="photo-tint photo-frame relative mt-10 aspect-[4/5] overflow-hidden rounded-5xl shadow-card">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async"
                alt="Doctors preparing for the AMC examination"
@@ -297,7 +297,7 @@ tailwind.config = {
             <span class="acc-icon mt-2 shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></span>
           </summary>
           <div class="pl-0 pt-5 sm:pl-[68px]">
-            <p class="max-w-[520px] text-[16px] leading-relaxed text-zinc-500">Learn from Australia-based faculty who specialise in training IMGs for the competitive AMC MCQ — 90+ hours across three months, with weekly mentorship and revision strategy.</p>
+            <p class="max-w-[520px] text-[16px] leading-relaxed text-zinc-500">Learn from Australia-based faculty who specialise in training IMGs for the competitive AMC MCQ â€” 90+ hours across three months, with weekly mentorship and revision strategy.</p>
             <ul class="mt-5 space-y-2.5">
               <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>Overview session with a senior physician</li>
               <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>Clarity on what to study, and what to skip</li>
@@ -358,10 +358,10 @@ tailwind.config = {
           <div class="pl-0 pt-5 sm:pl-[68px]">
             <p class="max-w-[520px] text-[16px] leading-relaxed text-zinc-500">Build a job-ready portfolio through a structured, fast-tracked program that helps you earn valuable CPD points.</p>
             <ul class="mt-5 space-y-2.5">
-              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>ALS course — Australia-recognised certification</li>
-              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>Audit and QIP — quality-improvement projects</li>
+              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>ALS course â€” Australia-recognised certification</li>
+              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>Audit and QIP â€” quality-improvement projects</li>
               <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>Conference talks and research publication support</li>
-              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>BMJ CPD access — ongoing learning credits</li>
+              <li class="flex items-center gap-3 text-[15px] text-zinc-600"><span class="h-1.5 w-1.5 rounded-full bg-flame"></span>BMJ CPD access â€” ongoing learning credits</li>
             </ul>
           </div>
         </details>
@@ -380,7 +380,7 @@ tailwind.config = {
       <div data-reveal class="rounded-5xl bg-white p-9 shadow-card ring-1 ring-black/5">
         <div class="flex items-start justify-between">
           <span class="t-num text-zinc-200">01</span>
-          <span class="label rounded-full bg-zinc-100 px-3 py-2 text-zinc-500">2–4 Weeks</span>
+          <span class="label rounded-full bg-zinc-100 px-3 py-2 text-zinc-500">2â€“4 Weeks</span>
         </div>
         <h3 class="t-h4 mt-6 text-ink">Assess &amp; Plan</h3>
         <p class="mt-3 text-[16px] leading-relaxed text-zinc-500">A free consultation to map your eligibility, timeline and fastest realistic route to AMC registration.</p>
@@ -399,7 +399,7 @@ tailwind.config = {
           <span class="label rounded-full bg-flame px-3 py-2 text-white">Ongoing</span>
         </div>
         <h3 class="t-h4 mt-6">Place &amp; Settle</h3>
-        <p class="mt-3 text-[16px] leading-relaxed text-zinc-400">Visa, accommodation, CV, interview prep and job strategy — through to your first hospital posting.</p>
+        <p class="mt-3 text-[16px] leading-relaxed text-zinc-400">Visa, accommodation, CV, interview prep and job strategy â€” through to your first hospital posting.</p>
       </div>
     </div>
   </div>
@@ -473,7 +473,7 @@ tailwind.config = {
       <div data-reveal class="rounded-4xl bg-white p-8 shadow-card ring-1 ring-black/5">
         <div class="grid h-12 w-12 place-items-center rounded-2xl bg-flame/10 text-flame"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div>
         <h3 class="mt-6 text-[20px] font-semibold text-ink">Visa and logistics</h3>
-        <p class="mt-2.5 text-[15px] leading-relaxed text-zinc-500">Full visa support and application guidance, start to finish — including accommodation.</p>
+        <p class="mt-2.5 text-[15px] leading-relaxed text-zinc-500">Full visa support and application guidance, start to finish â€” including accommodation.</p>
       </div>
       <div data-reveal class="rounded-4xl bg-white p-8 shadow-card ring-1 ring-black/5">
         <div class="grid h-12 w-12 place-items-center rounded-2xl bg-flame/10 text-flame"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
@@ -492,7 +492,7 @@ tailwind.config = {
 <!-- ============ MENTORSHIP BAND ============ -->
 <section class="py-20 lg:py-28">
   <div class="container">
-    <!-- PLACEHOLDER IMAGE — replace with real GooCampus mentorship photography -->
+    <!-- PLACEHOLDER IMAGE â€” replace with real GooCampus mentorship photography -->
     <figure data-reveal class="photo-tint photo-frame relative aspect-[21/9] overflow-hidden rounded-5xl shadow-card">
       <img class="photo h-full w-full object-cover object-center" loading="lazy" decoding="async"
            alt="A mentor guiding a junior doctor"
@@ -514,12 +514,12 @@ tailwind.config = {
       <div data-reveal class="rounded-5xl bg-white p-8 text-center shadow-card ring-1 ring-black/5">
         <div class="avatar mx-auto h-20 w-20"><span>B</span></div>
         <h3 class="mt-6 text-[19px] font-semibold text-ink">Dr. Balan</h3>
-        <p class="mt-1.5 text-[14px] leading-relaxed text-zinc-500">Lead Faculty — AMC MCQ strategy and revision</p>
+        <p class="mt-1.5 text-[14px] leading-relaxed text-zinc-500">Lead Faculty â€” AMC MCQ strategy and revision</p>
       </div>
       <div data-reveal class="rounded-5xl bg-white p-8 text-center shadow-card ring-1 ring-black/5">
         <div class="avatar mx-auto h-20 w-20"><span>M</span></div>
         <h3 class="mt-6 text-[19px] font-semibold text-ink">Dr. Manas</h3>
-        <p class="mt-1.5 text-[14px] leading-relaxed text-zinc-500">Clinical Faculty — AMC clinical exam intensive</p>
+        <p class="mt-1.5 text-[14px] leading-relaxed text-zinc-500">Clinical Faculty â€” AMC clinical exam intensive</p>
       </div>
       <div data-reveal class="rounded-5xl bg-white p-8 text-center shadow-card ring-1 ring-black/5">
         <div class="avatar mx-auto h-20 w-20"><span>P</span></div>
@@ -560,54 +560,54 @@ tailwind.config = {
     <div class="marquee-track">
       <!-- set A -->
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Amazing experience for AMC MCQ prep. Thanks to Dr. Balan and the team for their guidance and support.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œAmazing experience for AMC MCQ prep. Thanks to Dr. Balan and the team for their guidance and support.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bhargavi N</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Grateful for the support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œGrateful for the support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Jasmine Kaur</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-ink p-8 text-white shadow-card">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-300">“Weekly check-ins and the right materials led me to success. GooCampus helped me tremendously.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-300">â€œWeekly check-ins and the right materials led me to success. GooCampus helped me tremendously.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold">Dr. Gunjala Rohith</div><div class="label mt-1 text-zinc-500">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Professional and organised. My daughter cleared AMC-1 on her first attempt, thanks to the team.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œProfessional and organised. My daughter cleared AMC-1 on her first attempt, thanks to the team.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bhavesh Swarnkar</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“An exceptional experience. The faculty gave personalised attention and genuinely useful feedback.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œAn exceptional experience. The faculty gave personalised attention and genuinely useful feedback.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bavleen</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <!-- set B (duplicate for seamless loop) -->
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5" aria-hidden="true">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Amazing experience for AMC MCQ prep. Thanks to Dr. Balan and the team for their guidance and support.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œAmazing experience for AMC MCQ prep. Thanks to Dr. Balan and the team for their guidance and support.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bhargavi N</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5" aria-hidden="true">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Grateful for the support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œGrateful for the support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Jasmine Kaur</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-ink p-8 text-white shadow-card" aria-hidden="true">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-300">“Weekly check-ins and the right materials led me to success. GooCampus helped me tremendously.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-300">â€œWeekly check-ins and the right materials led me to success. GooCampus helped me tremendously.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold">Dr. Gunjala Rohith</div><div class="label mt-1 text-zinc-500">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5" aria-hidden="true">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“Professional and organised. My daughter cleared AMC-1 on her first attempt, thanks to the team.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œProfessional and organised. My daughter cleared AMC-1 on her first attempt, thanks to the team.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bhavesh Swarnkar</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
       <figure class="w-[380px] shrink-0 rounded-5xl bg-white p-8 shadow-card ring-1 ring-black/5" aria-hidden="true">
-        <div class="text-flame">★★★★★</div>
-        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">“An exceptional experience. The faculty gave personalised attention and genuinely useful feedback.”</blockquote>
+        <div class="text-flame">â˜…â˜…â˜…â˜…â˜…</div>
+        <blockquote class="mt-4 text-[16px] leading-relaxed text-zinc-600">â€œAn exceptional experience. The faculty gave personalised attention and genuinely useful feedback.â€</blockquote>
         <figcaption class="mt-6"><div class="font-semibold text-ink">Dr. Bavleen</div><div class="label mt-1 text-zinc-400">Australia AMC aspirant</div></figcaption>
       </figure>
     </div>
@@ -667,7 +667,7 @@ tailwind.config = {
       <div data-reveal class="divide-y divide-zinc-200 border-t border-zinc-200">
         <details class="acc py-6" open>
           <summary class="flex items-center justify-between gap-6"><span class="text-[19px] font-semibold text-ink">How long does the AMC pathway take?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <p class="mt-4 max-w-[600px] text-[16px] leading-relaxed text-zinc-500">Coaching runs about three months for the AMC MCQ, with clinical preparation and portfolio work alongside. Total time to a posting depends on your exam attempts, registration and job applications — we map a realistic timeline in your first consultation.</p>
+          <p class="mt-4 max-w-[600px] text-[16px] leading-relaxed text-zinc-500">Coaching runs about three months for the AMC MCQ, with clinical preparation and portfolio work alongside. Total time to a posting depends on your exam attempts, registration and job applications â€” we map a realistic timeline in your first consultation.</p>
         </details>
         <details class="acc py-6">
           <summary class="flex items-center justify-between gap-6"><span class="text-[19px] font-semibold text-ink">What do I need to get started?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -675,7 +675,7 @@ tailwind.config = {
         </details>
         <details class="acc py-6">
           <summary class="flex items-center justify-between gap-6"><span class="text-[19px] font-semibold text-ink">Who teaches the coaching sessions?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <p class="mt-4 max-w-[600px] text-[16px] leading-relaxed text-zinc-500">Australia-based physicians who specialise in training International Medical Graduates — many of whom completed the AMC Standard Pathway themselves.</p>
+          <p class="mt-4 max-w-[600px] text-[16px] leading-relaxed text-zinc-500">Australia-based physicians who specialise in training International Medical Graduates â€” many of whom completed the AMC Standard Pathway themselves.</p>
         </details>
         <details class="acc py-6">
           <summary class="flex items-center justify-between gap-6"><span class="text-[19px] font-semibold text-ink">Do you help with visa and job placement?</span><span class="acc-icon shrink-0 text-zinc-400"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -717,7 +717,7 @@ tailwind.config = {
         <label class="mt-4 block"><span class="label text-zinc-400">More about your situation</span>
           <textarea rows="4" class="mt-2 w-full rounded-2xl border border-zinc-200 bg-zinc-50 p-4 text-[15px] outline-none transition focus:border-flame focus:bg-white" placeholder="Where are you in the AMC pathway right now?"></textarea></label>
         <button type="submit" class="btn btn-dark mt-6 w-full">Book free consultation</button>
-        <p data-formmsg class="mt-4 hidden rounded-2xl bg-flame/10 p-4 text-center text-[14px] font-medium text-flame">Demo form — connect this to your CRM or Fillout endpoint to go live.</p>
+        <p data-formmsg class="mt-4 hidden rounded-2xl bg-flame/10 p-4 text-center text-[14px] font-medium text-flame">Demo form â€” connect this to your CRM or Fillout endpoint to go live.</p>
       </form>
     </div>
   </div>
@@ -754,7 +754,7 @@ tailwind.config = {
         </div>
       </div>
       <div class="mt-14 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-[14px] text-zinc-500">© 2026 GooCampus Australia. All rights reserved.</p>
+        <p class="text-[14px] text-zinc-500">Â© 2026 GooCampus Australia. All rights reserved.</p>
         <p class="text-[14px] text-zinc-500">AMC Standard Pathway guidance for IMGs.</p>
       </div>
     </div>
