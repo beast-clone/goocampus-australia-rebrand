@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -48,7 +48,7 @@
   html { scroll-behavior: smooth; }
   body { background:#F4EEE1; color:#12211C; -webkit-font-smoothing:antialiased; }
 
-  /* Scroll-reveal initial state — only applied when JS is present (progressive enhancement) */
+  /* Scroll-reveal initial state â€” only applied when JS is present (progressive enhancement) */
 
   /* Duotone brand treatment so photography reads on-brand and premium (softened so faces/scene stay legible) */
   .duotone{ filter:grayscale(.5) contrast(1.03) brightness(.99); }
@@ -58,7 +58,7 @@
   .photo-frame::before{ content:""; position:absolute; inset:0; border-radius:inherit;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); z-index:2; pointer-events:none; }
 
-  /* Fine grain for premium texture — fixed, non-interactive (perf-safe) */
+  /* Fine grain for premium texture â€” fixed, non-interactive (perf-safe) */
   .grain{ position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
 
@@ -95,7 +95,7 @@
 <div id="announce" class="bg-forest-dark text-ivory text-center text-[13px] sm:text-sm">
   <div class="container relative py-2.5 pr-8">
     <span class="opacity-90">Now enrolling: Australia AMC MCQ Coaching Program</span>
-    <span class="mx-2 text-gold-soft">·</span>
+    <span class="mx-2 text-gold-soft">Â·</span>
     <span class="font-medium">New batch begins 20 May</span>
     <button onclick="document.getElementById('announce').remove()" aria-label="Dismiss announcement"
       class="absolute right-3 top-1/2 -translate-y-1/2 text-ivory/70 hover:text-ivory">
@@ -315,7 +315,7 @@
     </h2>
   </div>
 
-  <!-- Module 1: AMC MCQ Prep — image left / content right -->
+  <!-- Module 1: AMC MCQ Prep â€” image left / content right -->
   <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
     <div data-reveal class="photo-frame relative order-2 aspect-[5/4] overflow-hidden rounded-3xl shadow-card lg:order-1">
       <img class="duotone h-full w-full object-cover" alt="Doctors preparing for the AMC MCQ examination"
@@ -336,7 +336,7 @@
     </div>
   </div>
 
-  <!-- Module 2: AMC Clinical Prep — domain grid (different layout family) -->
+  <!-- Module 2: AMC Clinical Prep â€” domain grid (different layout family) -->
   <div class="mt-20 rounded-3xl border border-ink/8 bg-cream p-8 shadow-soft sm:p-12">
     <div class="max-w-2xl">
       <h3 data-reveal class="font-display text-2xl font-700 text-ink">AMC clinical preparation</h3>
@@ -354,7 +354,7 @@
     </div>
   </div>
 
-  <!-- Module 3: Mentorship — content left / image right -->
+  <!-- Module 3: Mentorship â€” content left / image right -->
   <div class="mt-20 grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
     <div data-reveal>
       <h3 class="font-display text-2xl font-700 text-ink">Mentorship and job support</h3>
@@ -375,7 +375,7 @@
     </div>
   </div>
 
-  <!-- Module 4: Portfolio building — card row (different family) -->
+  <!-- Module 4: Portfolio building â€” card row (different family) -->
   <div class="mt-20">
     <div class="mb-8 max-w-2xl">
       <h3 data-reveal class="font-display text-2xl font-700 text-ink">Portfolio building</h3>
@@ -546,7 +546,7 @@
   </div>
   <div class="border-t border-ivory/10">
     <div class="container flex flex-col items-center justify-between gap-3 py-6 text-xs text-ivory/50 sm:flex-row">
-      <p>© 2026 GooCampus Australia. All rights reserved.</p>
+      <p>Â© 2026 GooCampus Australia. All rights reserved.</p>
       <p>AMC Standard Pathway guidance for IMGs.</p>
     </div>
   </div>
@@ -593,7 +593,7 @@
       els.forEach((el) => {
         gsap.to(el, {
           opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-          // Plays once, but without `once: true` — that self-destructs the trigger, and a
+          // Plays once, but without `once: true` â€” that self-destructs the trigger, and a
           // refresh (late images, font swap, resize) can kill an in-flight tween and strand
           // the element part-way visible.
           scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
