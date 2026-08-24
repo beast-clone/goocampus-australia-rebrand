@@ -21,7 +21,7 @@ tailwind.config = {
         ink:    '#0A0A0A',
         body:   '#5B5B5B',
         accent: '#FF3C00',   // brand mark, rules, non-text uses
-        cta:    '#D93000',   // filled buttons carrying white text â€” passes AA where #FF3C00 does not
+        cta:    '#D93000',   // filled buttons carrying white text — passes AA where #FF3C00 does not
         paper:  '#F7F7F5',
         line:   'rgba(0,0,0,.08)',
       },
@@ -37,7 +37,7 @@ tailwind.config = {
   body { background:#F7F7F5; color:#0A0A0A; font-family:Inter,ui-sans-serif,system-ui,sans-serif;
          font-variation-settings:'opsz' 16; -webkit-font-smoothing:antialiased; }
 
-  /* Trillo scale â€” H1 90/90/-4px w500 Â· H2 48/57.6/-2px w500 Â· body 16/27.2 */
+  /* Trillo scale — H1 90/90/-4px w500 · H2 48/57.6/-2px w500 · body 16/27.2 */
   .display { font-variation-settings:'opsz' 32; font-weight:500; }
   .t-h1 { font-size:clamp(2.75rem,7.1vw,90px); line-height:1.0;  letter-spacing:-0.044em; }
   .t-h2 { font-size:clamp(2rem,3.9vw,48px);    line-height:1.2;  letter-spacing:-0.042em; }
@@ -65,19 +65,19 @@ tailwind.config = {
 
   .rule { border-top:1px solid rgba(0,0,0,.08); }
 
-  /* Photography, tinted into the paper/accent system. PLACEHOLDERS â€” swap for real GooCampus photography. */
+  /* Photography, tinted into the paper/accent system. PLACEHOLDERS — swap for real GooCampus photography. */
   /* Photography is presented clean. The previous grayscale + dark multiply overlay
      existed so white text could sit on top; nothing overlays this image, so it only
      muted the photo. Grading is baked into the file instead of applied at runtime,
-     so no CSS filter here â€” a filter would double-process what is already graded. */
+     so no CSS filter here — a filter would double-process what is already graded. */
   .photo { }
   .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E9E9E6; }
-  /* Hairline edge only â€” keeps the image crisp against the page without tinting it. */
+  /* Hairline edge only — keeps the image crisp against the page without tinting it. */
   .photo-wrap::before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
     border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(10,10,10,.08); }
 
   /* The one authored motion moment: the hero resolves from soft focus on load.
-     Everything below the fold is static â€” no repeated per-section entrance.
+     Everything below the fold is static — no repeated per-section entrance.
      The resting state is VISIBLE; the entrance is animated *from* hidden. Nothing
      CSS-hides content waiting on JS, so a throttled or failed animation cannot strand it. */
   .rise-in { animation:rise .9s cubic-bezier(.16,1,.3,1) both; }
@@ -86,7 +86,7 @@ tailwind.config = {
   /* Feedback: the smallest change that makes cause and result unmistakable. */
   .lift { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1); }
   .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(10,10,10,.4); }
-  /* Scrolled state signals itself through shadow and surface, not height â€”
+  /* Scrolled state signals itself through shadow and surface, not height —
      animating height forces layout on every frame for no visual gain. */
   #nav { transition: box-shadow .3s cubic-bezier(.16,1,.3,1), background-color .3s; }
   #nav.condensed { background-color: rgba(247,247,245,.96); box-shadow: 0 10px 30px -24px rgba(10,10,10,.65); }
@@ -102,7 +102,7 @@ tailwind.config = {
 
 <!-- Announcement -->
 <div id="announce" class="relative bg-ink px-6 py-2.5 text-center text-[13px] text-white/90">
-  <span>Enroll in our upcoming Australia AMC MCQ Coaching Program â€” <span class="font-semibold text-white">Batch starting 20th May</span></span>
+  <span>Enroll in our upcoming Australia AMC MCQ Coaching Program — <span class="font-semibold text-white">Batch starting 20th May</span></span>
   <button onclick="document.getElementById('announce').remove()" aria-label="Dismiss announcement"
           class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -145,7 +145,7 @@ tailwind.config = {
       Australia AMC MCQ Coaching Program
     </h1>
     <p class="rise lead mx-auto mt-7 text-center" style="animation-delay:.16s">
-      Get 60+ hours of intensive, expert-led coaching with in-depth theory, live sessions, and mock exams to ensure youâ€™re fully prepared for the AMC CAT.
+      Get 60+ hours of intensive, expert-led coaching with in-depth theory, live sessions, and mock exams to ensure you’re fully prepared for the AMC CAT.
     </p>
     <div class="rise mt-9 flex flex-wrap items-center justify-center gap-3" style="animation-delay:.26s">
       <a href="#pricing" class="btn btn-cta w-full sm:w-auto">Pricing</a>
@@ -215,7 +215,7 @@ tailwind.config = {
       <div class="lift rounded-card bg-white p-7 ring-1 ring-black/[.06]">
         <span class="grid h-10 w-10 place-items-center rounded-btn bg-accent/10 text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></span>
         <h3 class="display mt-5 text-[19px] tracking-tight text-ink">Overview</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-body">Join Dr. KP Balanâ€™s 5-hour overview for a clear AMC pathway and prep roadmap.</p>
+        <p class="mt-2 text-[15px] leading-relaxed text-body">Join Dr. KP Balan’s 5-hour overview for a clear AMC pathway and prep roadmap.</p>
       </div>
       <div class="lift rounded-card bg-white p-7 ring-1 ring-black/[.06]">
         <span class="grid h-10 w-10 place-items-center rounded-btn bg-accent/10 text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
@@ -344,35 +344,35 @@ tailwind.config = {
     <h2 class="display t-h2 max-w-[18ch] text-ink">Trusted by thousands of doctors in India</h2>
     <div class="mt-10 grid gap-5 md:grid-cols-2 lg:mt-12 lg:grid-cols-6">
       <figure class="lift flex flex-col rounded-card border border-line bg-white p-8 lg:col-span-2">
-        <blockquote class="text-[17px] leading-relaxed text-ink">â€œAmazing experience with GooCampus for AMC MCQ prep. Thanks to Dr. Balan &amp; team for guidance and support.â€</blockquote>
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Amazing experience with GooCampus for AMC MCQ prep. Thanks to Dr. Balan &amp; team for guidance and support.”</blockquote>
         <figcaption class="mt-auto pt-7">
           <div class="text-[15px] font-semibold text-ink">Dr. Bhargavi N</div>
           <div class="mt-1 text-[14px] text-body">Australia AMC Aspirant</div>
         </figcaption>
       </figure>
       <figure class="lift flex flex-col rounded-card border border-line bg-white p-8 lg:col-span-2">
-        <blockquote class="text-[17px] leading-relaxed text-ink">â€œGrateful for GooCampusâ€™ support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.â€</blockquote>
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Grateful for GooCampus’ support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.”</blockquote>
         <figcaption class="mt-auto pt-7">
           <div class="text-[15px] font-semibold text-ink">Dr. Jasmine Kaur</div>
           <div class="mt-1 text-[14px] text-body">Australia AMC Aspirant</div>
         </figcaption>
       </figure>
       <figure class="lift flex flex-col rounded-card bg-ink p-8 lg:col-span-2">
-        <blockquote class="text-[17px] leading-relaxed text-white">â€œGooCampus helped me tremendously in AMC exam prep. Weekly check-ins and right materials led to success.â€</blockquote>
+        <blockquote class="text-[17px] leading-relaxed text-white">“GooCampus helped me tremendously in AMC exam prep. Weekly check-ins and right materials led to success.”</blockquote>
         <figcaption class="mt-auto pt-7">
           <div class="text-[15px] font-semibold text-white">Dr. Gunjala Rohith</div>
           <div class="mt-1 text-[14px] text-white/60">Australia AMC Aspirant</div>
         </figcaption>
       </figure>
       <figure class="lift flex flex-col rounded-card border border-line bg-white p-8 lg:col-span-3">
-        <blockquote class="text-[17px] leading-relaxed text-ink">â€œGooCampus is professional and organized. My daughter cleared AMC-1 on her first attempt, thanks to the team.â€</blockquote>
+        <blockquote class="text-[17px] leading-relaxed text-ink">“GooCampus is professional and organized. My daughter cleared AMC-1 on her first attempt, thanks to the team.”</blockquote>
         <figcaption class="mt-auto pt-7">
           <div class="text-[15px] font-semibold text-ink">Dr. Bhavesh Swarnkar</div>
           <div class="mt-1 text-[14px] text-body">Australia AMC Aspirant</div>
         </figcaption>
       </figure>
       <figure class="lift flex flex-col rounded-card border border-line bg-white p-8 lg:col-span-3">
-        <blockquote class="text-[17px] leading-relaxed text-ink">â€œExceptional experience with GooCampus. Faculty provided personalized attention and feedback.â€</blockquote>
+        <blockquote class="text-[17px] leading-relaxed text-ink">“Exceptional experience with GooCampus. Faculty provided personalized attention and feedback.”</blockquote>
         <figcaption class="mt-auto pt-7">
           <div class="text-[15px] font-semibold text-ink">Dr. Bavleen</div>
           <div class="mt-1 text-[14px] text-body">Australia AMC Aspirant</div>
@@ -421,7 +421,7 @@ tailwind.config = {
     <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
       <div class="lg:sticky lg:top-24 lg:self-start">
         <h2 class="display t-h2 text-ink">Have a question? We are here to answer.</h2>
-        <p class="copy mt-5">Still confused? Donâ€™t worry, just reach out.</p>
+        <p class="copy mt-5">Still confused? Don’t worry, just reach out.</p>
         <a href="https://wa.me/917483524565?text=I&#39;d%20like%20more%20information%20about%20the%20Australia%20AMC%20MCQ%20Coaching%20Program%20that&#39;s%20mentioned%20on%20your%20website." target="_blank" rel="noopener noreferrer" class="btn btn-ink mt-7 w-full sm:w-auto"><svg class="shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>Send us a WhatsApp</a>
       </div>
       <div class="divide-y divide-line border-t border-line">
@@ -529,7 +529,7 @@ tailwind.config = {
     </div>
 
     <div class="rule mt-14 flex flex-col gap-2 pt-8 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-[14px] text-body">Â© 2026 GooCampus Australia. All rights reserved.</p>
+      <p class="text-[14px] text-body">© 2026 GooCampus Australia. All rights reserved.</p>
       <p class="text-[14px] text-body">AMC Standard Pathway guidance for IMGs.</p>
     </div>
   </div>
@@ -547,7 +547,7 @@ tailwind.config = {
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Nav condenses once you leave the hero â€” continuity, not decoration.
+  // Nav condenses once you leave the hero — continuity, not decoration.
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('condensed', window.scrollY > 24);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
