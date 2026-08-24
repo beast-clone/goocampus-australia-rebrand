@@ -18,10 +18,10 @@ tailwind.config = {
     container: { center: true, padding: '1.5rem', screens: { '2xl': '1200px' } },
     extend: {
       colors: {
-        ink:    '#0A0A0A',
+        ink:    '#012169',
         body:   '#5B5B5B',
-        accent: '#FF3C00',   // brand mark, rules, non-text uses
-        cta:    '#D93000',   // filled buttons carrying white text — passes AA where #FF3C00 does not
+        accent: '#E4002B',   // brand mark, rules, non-text uses
+        cta:    '#E4002B',   // filled buttons carrying white text — passes AA where #E4002B does not
         paper:  '#F7F7F5',
         line:   'rgba(0,0,0,.08)',
       },
@@ -34,7 +34,7 @@ tailwind.config = {
 <style>
   :root { color-scheme: light; }
   html { scroll-behavior: smooth; }
-  body { background:#F7F7F5; color:#0A0A0A; font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+  body { background:#F7F7F5; color:#012169; font-family:Inter,ui-sans-serif,system-ui,sans-serif;
          font-variation-settings:'opsz' 16; -webkit-font-smoothing:antialiased; }
 
   /* Trillo scale — H1 90/90/-4px w500 · H2 48/57.6/-2px w500 · body 16/27.2 */
@@ -50,17 +50,17 @@ tailwind.config = {
          height:52px; padding:0 22px; border-radius:12px; font-size:15px; font-weight:600;
          white-space:nowrap; transition:background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.16,1,.3,1); }
   .btn:active { transform:translateY(1px); }
-  .btn-cta   { background:#D93000; color:#fff; }
-  .btn-cta:hover { background:#BF2A00; }
-  .btn-ink   { background:#0A0A0A; color:#fff; }
-  .btn-ink:hover { background:#262626; }
-  .btn-ghost { background:#fff; color:#0A0A0A; border:1px solid rgba(0,0,0,.12); }
+  .btn-cta   { background:#E4002B; color:#fff; }
+  .btn-cta:hover { background:#B3001F; }
+  .btn-ink   { background:#012169; color:#fff; }
+  .btn-ink:hover { background:#0A2E86; }
+  .btn-ghost { background:#fff; color:#012169; border:1px solid rgba(0,0,0,.12); }
   .btn-ghost:hover { border-color:rgba(0,0,0,.28); }
   .btn-sm { height:44px; padding:0 20px; font-size:14px; }
 
   .chip { display:inline-flex; align-items:center; gap:.5rem; min-height:40px; padding:8px 16px;
           border-radius:100px; background:#fff; border:1px solid rgba(0,0,0,.08);
-          font-size:14px; font-weight:500; color:#0A0A0A; text-align:left; }
+          font-size:14px; font-weight:500; color:#012169; text-align:left; }
   .chip svg { flex:none; }
 
   .rule { border-top:1px solid rgba(0,0,0,.08); }
@@ -71,10 +71,10 @@ tailwind.config = {
      muted the photo. Grading is baked into the file instead of applied at runtime,
      so no CSS filter here — a filter would double-process what is already graded. */
   .photo { }
-  .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E9E9E6; }
+  .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E8EAF0; }
   /* Hairline edge only — keeps the image crisp against the page without tinting it. */
   .photo-wrap::before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
-    border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(10,10,10,.08); }
+    border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(1,33,105,.08); }
 
   /* The one authored motion moment: the hero resolves from soft focus on load.
      Everything below the fold is static — no repeated per-section entrance.
@@ -85,11 +85,11 @@ tailwind.config = {
 
   /* Feedback: the smallest change that makes cause and result unmistakable. */
   .lift { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1); }
-  .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(10,10,10,.4); }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(1,33,105,.4); }
   /* Scrolled state signals itself through shadow and surface, not height —
      animating height forces layout on every frame for no visual gain. */
   #nav { transition: box-shadow .3s cubic-bezier(.16,1,.3,1), background-color .3s; }
-  #nav.condensed { background-color: rgba(247,247,245,.96); box-shadow: 0 10px 30px -24px rgba(10,10,10,.65); }
+  #nav.condensed { background-color: rgba(247,247,245,.96); box-shadow: 0 10px 30px -24px rgba(1,33,105,.65); }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
@@ -162,7 +162,7 @@ tailwind.config = {
   <div class="container">
     <!-- Generated via Magnific (seedream-5-pro), cropped to exactly 21:9 so the group sits
          centred and the browser does no further cropping. Stored locally, not hotlinked. -->
-    <figure class="rise photo-wrap aspect-[21/9] shadow-[0_2px_4px_-2px_rgba(10,10,10,.10),0_28px_64px_-30px_rgba(10,10,10,.40)]" style="animation-delay:.46s">
+    <figure class="rise photo-wrap aspect-[21/9] shadow-[0_2px_4px_-2px_rgba(1,33,105,.10),0_28px_64px_-30px_rgba(1,33,105,.40)]" style="animation-delay:.46s">
       <img id="heroArt" class="photo h-full w-full object-cover object-center" fetchpriority="high" decoding="async"
            alt="A group of Indian doctors in white coats in a bright modern hospital"
            src="assets/doctors-hero.jpg" />
@@ -181,8 +181,8 @@ tailwind.config = {
         <h3 class="display t-h3 text-ink">High-Yield Focus</h3>
         <p class="mt-2 text-[16px] font-semibold text-ink">Concentrate on Key Topics</p>
         <ul class="mt-4 space-y-3">
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Target high-impact areas to boost your score</span></li>
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Optimize study time with a focused approach</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Target high-impact areas to boost your score</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Optimize study time with a focused approach</span></li>
         </ul>
       </div>
       <div class="rule pt-7">
@@ -190,8 +190,8 @@ tailwind.config = {
         <h3 class="display t-h3 text-ink">Group Learning &amp; Accountability</h3>
         <p class="mt-2 text-[16px] font-semibold text-ink">Collaborate and Stay on Track</p>
         <ul class="mt-4 space-y-3">
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Join a study group for support and motivation</span></li>
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Share resources and create study routines together</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Join a study group for support and motivation</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Share resources and create study routines together</span></li>
         </ul>
       </div>
       <div class="rule pt-7">
@@ -199,8 +199,8 @@ tailwind.config = {
         <h3 class="display t-h3 text-ink">Expert IMG Guidance</h3>
         <p class="mt-2 text-[16px] font-semibold text-ink">Learn from Successful IMG Physicians</p>
         <ul class="mt-4 space-y-3">
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Gain insights on essential topics and strategies</span></li>
-          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Understand what to prioritize for AMC CAT success</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Gain insights on essential topics and strategies</span></li>
+          <li class="flex gap-3 text-[15px] text-body"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Understand what to prioritize for AMC CAT success</span></li>
         </ul>
       </div>
     </div>
@@ -403,11 +403,11 @@ tailwind.config = {
         <div class="lg:border-l lg:border-white/10 lg:pl-16">
           <div class="label text-zinc-500">Key things to note:</div>
           <ul class="mt-5 space-y-3.5">
-            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>3-Month Structured Study Plan</span></li>
-            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Live Online Classes</span></li>
-            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Recorded Sessions</span></li>
-            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Recorded Theory Classes</span></li>
-            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF3C00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Online Learning Material</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>3-Month Structured Study Plan</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Live Online Classes</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Recorded Sessions</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Recorded Theory Classes</span></li>
+            <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Access to Online Learning Material</span></li>
           </ul>
         </div>
       </div>
