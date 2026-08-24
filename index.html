@@ -241,9 +241,9 @@ tailwind.config = {
           taking IMGs from AMC MCQ to a hospital posting in Australia.
         </p>
         <div class="flex flex-wrap items-center gap-10">
-          <div><div class="text-[44px] font-semibold leading-none text-ink"><span data-count="300">0</span>+</div><div class="label mt-2 text-zinc-400">Doctors guided</div></div>
-          <div><div class="text-[44px] font-semibold leading-none text-ink"><span data-count="90">0</span>+</div><div class="label mt-2 text-zinc-400">Hours of coaching</div></div>
-          <div><div class="text-[44px] font-semibold leading-none text-flame"><span data-count="4.9">0</span></div><div class="label mt-2 text-zinc-400">Average rating</div></div>
+          <div><div class="text-[44px] font-semibold leading-none text-ink"><span data-count="300">300</span>+</div><div class="label mt-2 text-zinc-400">Doctors guided</div></div>
+          <div><div class="text-[44px] font-semibold leading-none text-ink"><span data-count="90">90</span>+</div><div class="label mt-2 text-zinc-400">Hours of coaching</div></div>
+          <div><div class="text-[44px] font-semibold leading-none text-flame"><span data-count="4.9">4.9</span></div><div class="label mt-2 text-zinc-400">Average rating</div></div>
         </div>
       </div>
     </div>
@@ -541,9 +541,9 @@ tailwind.config = {
     <div data-reveal class="rounded-5xl bg-ink px-8 py-16 lg:px-16 lg:py-20">
       <h2 class="t-h2 max-w-[620px] text-white">Guidance built for<br />the AMC pathway</h2>
       <div class="mt-16 grid gap-12 border-t border-white/10 pt-14 sm:grid-cols-3">
-        <div><div class="label text-zinc-500">Doctors guided</div><div class="t-num mt-3 text-white"><span data-count="300">0</span><span class="text-flame">+</span></div></div>
-        <div><div class="label text-zinc-500">Hours of live coaching</div><div class="t-num mt-3 text-white"><span data-count="90">0</span><span class="text-flame">+</span></div></div>
-        <div><div class="label text-zinc-500">Average program rating</div><div class="t-num mt-3 text-white"><span data-count="4.9">0</span><span class="text-flame">/5</span></div></div>
+        <div><div class="label text-zinc-500">Doctors guided</div><div class="t-num mt-3 text-white"><span data-count="300">300</span><span class="text-flame">+</span></div></div>
+        <div><div class="label text-zinc-500">Hours of live coaching</div><div class="t-num mt-3 text-white"><span data-count="90">90</span><span class="text-flame">+</span></div></div>
+        <div><div class="label text-zinc-500">Average program rating</div><div class="t-num mt-3 text-white"><span data-count="4.9">4.9</span><span class="text-flame">/5</span></div></div>
       </div>
     </div>
   </div>
@@ -774,7 +774,10 @@ tailwind.config = {
 
   // Scroll reveal + count-up via GSAP ScrollTrigger, with fail-safes so content is never stuck hidden.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealAll = () => document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  const revealAll = () => {
+    if (window.gsap) gsap.killTweensOf('[data-reveal]');
+    document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  };
 
   function loadGSAP(cb){
     const s1 = document.createElement('script');
@@ -787,7 +790,6 @@ tailwind.config = {
     };
     document.head.appendChild(s1);
   }
-  setTimeout(revealAll, 2600); // absolute fail-safe
 
   if (reduce) {
     revealAll();
@@ -803,10 +805,33 @@ tailwind.config = {
 
       gsap.to(inView, { opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .06 });
 
-      below.forEach((el) => {
-        gsap.to(el, { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
-      });
+      // Below-fold reveals run on IntersectionObserver, not ScrollTrigger. ScrollTrigger
+      // caches element positions and needs refresh() when layout shifts; if those go stale
+      // the callback never fires and the content stays invisible. IntersectionObserver asks
+      // the browser directly, so it cannot desynchronise from layout.
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          const batch = entries.filter(e => e.isIntersecting).map(e => e.target);
+          if (!batch.length) return;
+          gsap.to(batch, { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+                           stagger: Math.min(.06, .4 / batch.length), overwrite: true });
+          batch.forEach(el => obs.unobserve(el));
+        }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+        below.forEach(el => io.observe(el));
+      } else {
+        gsap.to(below, { opacity: 1, y: 0, duration: .7, ease: 'power3.out' });
+      }
+
+      // Watchdog: anything on screen should have revealed by now.
+      setTimeout(() => {
+        all.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0 && parseFloat(getComputedStyle(el).opacity) < 0.99) {
+            gsap.killTweensOf(el);
+            el.style.opacity = 1; el.style.transform = 'none';
+          }
+        });
+      }, 3000);
 
       // Recalculate trigger positions once the hero art has settled the layout.
       const heroImg = document.getElementById('heroArt');
@@ -817,10 +842,16 @@ tailwind.config = {
         scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
 
       gsap.utils.toArray('[data-count]').forEach((el) => {
-        const end = parseFloat(el.dataset.count), obj = { v: 0 };
-        gsap.to(obj, { v: end, duration: 1.5, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-          onUpdate: () => { el.textContent = Number.isInteger(end) ? Math.round(obj.v) : obj.v.toFixed(1); } });
+        const end = parseFloat(el.dataset.count);
+        const write = v => { el.textContent = Number.isInteger(end) ? Math.round(v) : v.toFixed(1); };
+        const run = () => { const obj = { v: 0 };
+          gsap.to(obj, { v: end, duration: 1.5, ease: 'power2.out',
+            onUpdate: () => write(obj.v), onComplete: () => write(end) }); };
+        if (!('IntersectionObserver' in window)) { write(end); return; }
+        const io = new IntersectionObserver((entries, obs) => {
+          if (entries.some(e => e.isIntersecting)) { run(); obs.disconnect(); }
+        }, { threshold: 0.4 });
+        io.observe(el);
       });
     });
   }

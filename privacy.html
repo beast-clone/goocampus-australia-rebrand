@@ -68,6 +68,9 @@ tailwind.config = {
   /* Section blocks get a hairline and a hanging number, so a long document stays
      navigable without turning into a wall of headings. */
   .sec { scroll-margin-top:96px; }
+  /* "In Short" summaries: quieter than the body they precede, with an accent rule. */
+  .prose .inshort { margin-top:1rem; padding:12px 16px; border-left:2px solid #FF3C00;
+                    background:rgba(255,60,0,.04); border-radius:0 8px 8px 0; color:#3F3F3F; }
   .sec-num { font-size:13px; font-weight:600; letter-spacing:.06em; color:#FF3C00; font-variant-numeric:tabular-nums; }
 
   .callout { background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:16px; padding:22px 24px; }
@@ -99,9 +102,9 @@ tailwind.config = {
     <div class="container py-14 lg:py-20">
       <p class="text-[13px] font-semibold uppercase tracking-[.08em] text-accent">Legal</p>
       <h1 class="display t-h1 mt-4 text-ink">Privacy Policy</h1>
-      <p class="lead mt-6">How we collect, use, store and disclose your personal information &mdash; and the rights you have over it under Australian law.</p>
+      <p class="lead mt-6">What information we collect, how we use it and what rights you have in relation to it.</p>
       <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-2 text-[14px] text-body">
-        <span><strong class="font-semibold text-ink">Last updated:</strong> 23 August 2026</span>
+        <span><strong class="font-semibold text-ink">Last updated on</strong> October 10, 2023</span>
         <span><strong class="font-semibold text-ink">Applies to:</strong> GooCampus Australia website and services</span>
       </div>
     </div>
@@ -113,204 +116,76 @@ tailwind.config = {
       <!-- Body -->
       <div class="prose order-2 lg:order-1">
 
-        <section id="who" class="sec">
+        <section id="intro" class="sec">
           <p class="sec-num">01</p>
-          <h2 class="display t-h2 mt-2 text-ink">Who we are</h2>
-          <p>This website is operated by <strong>GooCampus Edu Solutions Private Limited</strong>, an Indian company trading as <strong>GooCampus</strong> and, for the services described on this site, as <strong>GooCampus Australia</strong> (&ldquo;GooCampus&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;).</p>
-          <p>We provide education consulting and coaching to International Medical Graduates pursuing the Australian Medical Council (AMC) Standard Pathway. We are not a university, a government body, or a migration agent, and we are not affiliated with the Australian Medical Council.</p>
-          <p>Our registered office is at #138/6, Ground Floor, 10th Main Road, 6th A Cross, Sadashiv Nagar, RMV Extension, Behind SBI Bank, Bangalore, Karnataka &ndash; 560080, India.</p>
-          <p>If you have any question about this policy or about how we handle your information, contact us at <a href="mailto:info@goocampus.in">info@goocampus.in</a>.</p>
+          <h2 class="display t-h2 mt-2 text-ink">Introduction</h2>
+          <p>Thank you for choosing to be part of our community at GooCampus Edu Solutions Private Limited, doing business as GooCampus (&ldquo;GooCampus&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at <a href="mailto:info@goocampus.in">info@goocampus.in</a>.</p>
+          <p>When you visit our website <a href="https://goocampusaustralia.com">https://goocampusaustralia.com</a> (the &ldquo;Website&rdquo;), and more generally, use any of our services (the &ldquo;Services&rdquo;, which include the Website), we appreciate that you are trusting us with your personal information. We take your privacy very seriously. In this privacy notice, we seek to explain to you in the clearest way possible what information we collect, how we use it and what rights you have in relation to it. We hope you take some time to read through it carefully, as it is important. If there are any terms in this privacy notice that you do not agree with, please discontinue use of our Services immediately.</p>
+          <p>This privacy notice applies to all information collected through our Services (which, as described above, includes our Website), as well as, any related services, sales, marketing or events.</p>
+          <p>Please read this privacy notice carefully as it will help you understand what we do with the information that we collect.</p>
         </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="scope" class="sec">
-          <p class="sec-num">02</p>
-          <h2 class="display t-h2 mt-2 text-ink">Scope of this policy</h2>
-          <p>This policy applies to personal information we collect through this website and through the related services, enquiries, consultations, coaching programs and events we offer to prospective and current clients in connection with the Australian pathway.</p>
-          <p>Because we offer services to individuals in Australia, we handle personal information in accordance with the <strong>Privacy Act 1988 (Cth)</strong> and the <strong>Australian Privacy Principles</strong> (APPs). As an Indian company, we are also subject to India&rsquo;s <strong>Digital Personal Data Protection Act, 2023</strong>. Where those obligations differ, we apply the standard more protective of you.</p>
-          <p>If you do not agree with this policy, please do not submit your information to us.</p>
-        </section>
-
-        <div class="rule my-12"></div>
 
         <section id="collect" class="sec">
-          <p class="sec-num">03</p>
-          <h2 class="display t-h2 mt-2 text-ink">What information we collect</h2>
+          <p class="sec-num">02</p>
+          <h2 class="display t-h2 mt-2 text-ink">What information do we collect?</h2>
 
-          <h3 class="t-h3 mt-8 text-ink">Information you give us</h3>
-          <p>We collect personal information you provide voluntarily &mdash; when you book a free consultation, enquire about a program, message us, or enrol. This may include:</p>
-          <ul>
-            <li>Your name, email address and phone number</li>
-            <li>Your country of residence and preferred contact method</li>
-            <li>Details of your medical qualification, university, year of graduation and current registration status</li>
-            <li>Which stage of the AMC pathway you are at, and which exam or program you are interested in</li>
-            <li>The content of any message you send us</li>
-          </ul>
-          <p>Some of this &mdash; for example details of your medical qualifications and professional registration &mdash; may be treated as sensitive information under the Privacy Act. We collect it only with your consent, only where it is reasonably necessary to advise you on the pathway, and we do not use it for any other purpose.</p>
+          <h3 class="display t-h3 mt-8 text-ink">Personal information you disclose to us</h3>
+          <p class="inshort"><strong>In Short:</strong> We collect personal information that you provide to us.</p>
+          <p>We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Website or otherwise when you contact us.</p>
+          <p>The personal information that we collect depends on the context of your interactions with us and the Website, the choices you make and the products and features you use. The personal information we collect may include the following:</p>
+          <p><strong>Personal Information Provided by You.</strong> We collect names; phone numbers; email addresses; billing addresses; and other similar information.</p>
+          <p><strong>Payment Data.</strong> We may collect data necessary to process your payment if you make purchases, such as your payment instrument number (such as a credit card number), and the security code associated with your payment instrument. All payment data is stored by Stripe. You may find their privacy notice link(s) here: <a href="https://stripe.com/en-in/privacy" target="_blank" rel="noopener noreferrer">https://stripe.com/en-in/privacy</a>.</p>
+          <p>All personal information that you provide to us must be true, complete and accurate, and you must notify us of any changes to such personal information.</p>
 
-          <h3 class="t-h3 mt-8 text-ink">Information collected automatically</h3>
-          <p>When you visit this website, our hosting provider records standard technical information such as your IP address, browser type and version, device type, operating system, referring page and the date and time of your visit. This is used to keep the site secure and working, and does not by itself identify you.</p>
+          <h3 class="display t-h3 mt-8 text-ink">Information automatically collected</h3>
+          <p class="inshort"><strong>In Short:</strong> Some information &mdash; such as your Internet Protocol (IP) address and/or browser and device characteristics &mdash; is collected automatically when you visit our Website.</p>
+          <p>We automatically collect certain information when you visit, use or navigate the Website. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Website and other technical information. This information is primarily needed to maintain the security and operation of our Website, and for our internal analytics and reporting purposes.</p>
+          <p>Like many businesses, we also collect information through cookies and similar technologies.</p>
+          <p>The information we collect includes:</p>
+          <p><strong>Log and Usage Data.</strong> Log and usage data is service-related, diagnostic, usage and performance information our servers automatically collect when you access or use our Website and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type and settings and information about your activity in the Website (such as the date/time stamps associated with your usage, pages and files viewed, searches and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called &lsquo;crash dumps&rsquo;) and hardware settings).</p>
+          <p><strong>Device Data.</strong> We collect device data such as information about your computer, phone, tablet or other device you use to access the Website. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model Internet service provider and/or mobile carrier, operating system and system configuration information.</p>
+          <p><strong>Location Data.</strong> We collect location data such as information about your device&rsquo;s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Website. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. Note however, if you choose to opt out, you may not be able to use certain aspects of the Services.</p>
 
-          <h3 class="t-h3 mt-8 text-ink">Payment information</h3>
-          <div class="callout callout-accent mt-4">
-            <p style="margin-top:0"><strong>We do not collect or process any payment on this website.</strong> There is no checkout, no card form and no payment processor running on these pages. If you choose to enrol in a paid program, payment is arranged separately and handled by our finance team or a third-party payment provider, who will tell you at that time how your payment data is handled. We never ask for card details by email or over WhatsApp.</p>
-          </div>
+          <h3 class="display t-h3 mt-8 text-ink">Information collected from other sources</h3>
+          <p class="inshort"><strong>In Short:</strong> We may collect limited data from public databases, marketing partners, and other outside sources.</p>
+          <p>In order to enhance our ability to provide relevant marketing, offers and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, as well as from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behavior data), Internet Protocol (IP) addresses, social media profiles, social media URLs and custom profiles, for purposes of targeted advertising and event promotion.</p>
         </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="how" class="sec">
-          <p class="sec-num">04</p>
-          <h2 class="display t-h2 mt-2 text-ink">How we use your information</h2>
-          <p>We use personal information only for the purpose you gave it to us for, and for directly related purposes you would reasonably expect. Specifically:</p>
-          <ul>
-            <li>To respond to your enquiry and schedule your consultation</li>
-            <li>To assess which AMC pathway program suits your stage and qualifications, and to advise you accordingly</li>
-            <li>To deliver coaching, materials and support if you enrol</li>
-            <li>To send you service messages about a program you have enrolled in</li>
-            <li>To send you information about our programs where you have asked us to, or where you would reasonably expect it &mdash; you can opt out at any time</li>
-            <li>To improve our website and services, and to keep them secure</li>
-            <li>To meet our legal, accounting and record-keeping obligations</li>
-          </ul>
-          <p>We do not sell your personal information. We do not use it to make automated decisions that produce a legal or similarly significant effect on you.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="share" class="sec">
-          <p class="sec-num">05</p>
-          <h2 class="display t-h2 mt-2 text-ink">Who we share it with</h2>
-          <p>We disclose personal information only where it is necessary to run our services, and only to parties bound to protect it. These include:</p>
-          <ul>
-            <li><strong>Form and scheduling providers.</strong> Our consultation and enquiry forms are hosted by Fillout, which receives and stores your submission on our behalf.</li>
-            <li><strong>Messaging platforms.</strong> If you contact us via WhatsApp, your message and phone number are handled by WhatsApp (Meta) under its own privacy terms as well as ours.</li>
-            <li><strong>Email, storage and workflow providers</strong> we use to run the business and hold client records.</li>
-            <li><strong>Professional advisers</strong> &mdash; accountants, auditors and lawyers &mdash; where required.</li>
-            <li><strong>Government or regulatory bodies</strong> where we are required by law to disclose.</li>
-          </ul>
-          <p>We do not share your information with universities, hospitals, recruiters or any third party for their own marketing purposes.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="overseas" class="sec">
-          <p class="sec-num">06</p>
-          <h2 class="display t-h2 mt-2 text-ink">Overseas disclosure</h2>
-          <div class="callout callout-accent mt-4">
-            <p style="margin-top:0">Please read this section carefully if you are in Australia.</p>
-          </div>
-          <p>GooCampus is based in <strong>India</strong>, and our team accesses and stores client information there. Some of the service providers we use &mdash; including our form provider and messaging platforms &mdash; store data in the <strong>United States</strong> or other countries.</p>
-          <p>This means that if you give us your personal information, <strong>it will be disclosed to and held by recipients outside Australia</strong>, principally in India and the United States. By submitting your information, you consent to that overseas disclosure.</p>
-          <p>You should be aware that overseas recipients may be subject to laws that differ from the Privacy Act, and that in some cases you may not be able to seek redress under the Privacy Act in respect of an overseas recipient. We take reasonable steps to ensure the providers we use have appropriate security and confidentiality protections in place.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="cookies" class="sec">
-          <p class="sec-num">07</p>
-          <h2 class="display t-h2 mt-2 text-ink">Cookies</h2>
-          <p>This website uses only what is necessary to serve the pages and load fonts. We do not currently run advertising pixels or third-party analytics on these pages.</p>
-          <p>Third-party services embedded in or linked from the site &mdash; such as our form provider &mdash; may set their own cookies when you interact with them, governed by their own policies. You can block or delete cookies in your browser settings, though some parts of the site may then not work as intended.</p>
-          <p>If we add analytics or advertising tracking in future, we will update this policy before doing so.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="retention" class="sec">
-          <p class="sec-num">08</p>
-          <h2 class="display t-h2 mt-2 text-ink">How long we keep it</h2>
-          <p>We keep personal information only as long as we need it for the purpose we collected it, or as long as the law requires.</p>
-          <ul>
-            <li><strong>Enquiries that do not proceed:</strong> generally up to 24 months from your last contact with us, so we can pick up the conversation if you return.</li>
-            <li><strong>Client records:</strong> for the duration of your program and then as required for our tax, accounting and legal obligations.</li>
-          </ul>
-          <p>When information is no longer needed, we take reasonable steps to destroy it or permanently de-identify it. You can ask us to delete your information sooner &mdash; see below.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="security" class="sec">
-          <p class="sec-num">09</p>
-          <h2 class="display t-h2 mt-2 text-ink">How we protect it</h2>
-          <p>We take reasonable steps to protect personal information from misuse, interference, loss, and unauthorised access, modification or disclosure. These include serving this site over HTTPS, restricting access to client records to staff who need it, and choosing reputable service providers.</p>
-          <p>No method of transmission or storage is completely secure, and we cannot guarantee absolute security. If a data breach occurs that is likely to result in serious harm to you, we will notify you and the Office of the Australian Information Commissioner as required by the Notifiable Data Breaches scheme.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="rights" class="sec">
-          <p class="sec-num">10</p>
-          <h2 class="display t-h2 mt-2 text-ink">Your rights</h2>
-          <p>You can, at any time:</p>
-          <ul>
-            <li><strong>Ask what we hold.</strong> Request access to the personal information we hold about you.</li>
-            <li><strong>Correct it.</strong> Ask us to update anything inaccurate, out of date or incomplete.</li>
-            <li><strong>Ask us to delete it,</strong> where we are not required to keep it.</li>
-            <li><strong>Opt out of marketing.</strong> Use the unsubscribe link, reply STOP, or email us &mdash; we will action it promptly.</li>
-            <li><strong>Withdraw consent</strong> to our handling of your information, understanding that we may then be unable to continue advising you.</li>
-            <li><strong>Deal with us anonymously or by pseudonym</strong> for a general enquiry, where it is lawful and practicable for us to do so.</li>
-          </ul>
-          <p>Email <a href="mailto:info@goocampus.in">info@goocampus.in</a> to make any of these requests. We will respond within a reasonable period, ordinarily within 30 days. We do not charge for making a request. If we refuse access or correction, we will tell you why in writing.</p>
-        </section>
-
-        <div class="rule my-12"></div>
-
-        <section id="complaints" class="sec">
-          <p class="sec-num">11</p>
-          <h2 class="display t-h2 mt-2 text-ink">Complaints</h2>
-          <p>If you believe we have mishandled your personal information, please tell us first so we can put it right. Write to <a href="mailto:info@goocampus.in">info@goocampus.in</a> with the details. We will acknowledge your complaint and aim to resolve it within 30 days.</p>
-          <p>If you are not satisfied with our response, you may complain to the Office of the Australian Information Commissioner:</p>
-          <div class="callout mt-4">
-            <p style="margin-top:0"><strong>Office of the Australian Information Commissioner (OAIC)</strong><br>
-            GPO Box 5288, Sydney NSW 2001<br>
-            Phone: 1300 363 992<br>
-            Web: <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">www.oaic.gov.au</a></p>
-          </div>
-        </section>
-
-        <div class="rule my-12"></div>
 
         <section id="practices" class="sec">
-          <p class="sec-num">12</p>
-          <h2 class="display t-h2 mt-2 text-ink">Our admission practices</h2>
-          <p>We do not engage in direct management seat admissions. Our function is consulting: we provide advice, support, information, documentation assistance, training and study programs to help you pursue your own application. We do not guarantee an exam result, a registration outcome, a job, or a visa.</p>
+          <p class="sec-num">03</p>
+          <h2 class="display t-h2 mt-2 text-ink">Admission practices</h2>
+          <p>We do not engage in direct management seat admissions. Our core function is to provide consulting services. We offer advice, support, information, documentation processing, training, and study programs to assist clients in their educational pursuits.</p>
         </section>
-
-        <div class="rule my-12"></div>
 
         <section id="payments" class="sec">
-          <p class="sec-num">13</p>
+          <p class="sec-num">04</p>
           <h2 class="display t-h2 mt-2 text-ink">Unauthorised payment requests</h2>
-          <div class="callout callout-accent mt-4">
-            <p style="margin-top:0">If anyone requests cash payments, or payments to any account or location other than those confirmed in writing by our Bangalore head office, <strong>do not pay</strong> &mdash; contact us immediately on the details below. GooCampus Edu Solutions Pvt Ltd accepts no responsibility for payments made to individuals or entities impersonating our team.</p>
-          </div>
+          <p>If anyone requests cash payments or payments at locations other than our Bangalore head office, we urge our clients to notify us immediately. GooCampus Edu Solutions Pvt Ltd disclaims any responsibility for payments made to individuals or entities impersonating our team members.</p>
         </section>
 
-        <div class="rule my-12"></div>
-
-        <section id="contact" class="sec">
-          <p class="sec-num">14</p>
-          <h2 class="display t-h2 mt-2 text-ink">Contact and grievance redressal</h2>
-          <p>For any concern, complaint or question about this policy, your information, or an unauthorised payment request, contact our head office:</p>
-          <div class="callout mt-4">
-            <p style="margin-top:0"><strong>GooCampus Edu Solutions Pvt Ltd</strong><br>
-            #138/6, Ground Floor, 10th Main Road,<br>
-            6th A Cross, Sadashiv Nagar, RMV Extension,<br>
-            Behind SBI Bank, Bangalore,<br>
-            Karnataka &ndash; 560080, India</p>
-            <p><strong>Phone:</strong> +91 80 41743956 &nbsp;&middot;&nbsp; +91 80 40930303</p>
-            <p><strong>Privacy enquiries:</strong> <a href="mailto:info@goocampus.in">info@goocampus.in</a><br>
-            <strong>Finance and payment concerns:</strong> <a href="mailto:finance@goocampus.in">finance@goocampus.in</a></p>
-          </div>
+        <section id="grievance" class="sec">
+          <p class="sec-num">05</p>
+          <h2 class="display t-h2 mt-2 text-ink">Grievance redressal</h2>
+          <p>In case of any concerns, complaints, or questions regarding our services or if you come across any unauthorized payment requests, please contact our head office using the following details:</p>
+          <address class="not-italic">
+            <p><strong>GooCampus Edu Solutions Pvt Ltd</strong><br />
+            #138/6, Ground Floor, 10th Main Road,<br />
+            6th A Cross, Sadashiv Nagar, RMV Extension,<br />
+            Behind SBI Bank, Bangalore,<br />
+            Karnataka &ndash; 560080, India.</p>
+            <p><strong>Phone</strong><br />
+            <a href="tel:+918041743956">+91 80 41743956</a><br />
+            <a href="tel:+918040930303">+91 80 40930303</a></p>
+            <p><strong>Email</strong><br />
+            <a href="mailto:finance@goocampus.in">finance@goocampus.in</a><br />
+            <a href="mailto:shekhar@goocampus.in">shekhar@goocampus.in</a></p>
+          </address>
         </section>
 
-        <div class="rule my-12"></div>
-
-        <section id="changes" class="sec">
-          <p class="sec-num">15</p>
-          <h2 class="display t-h2 mt-2 text-ink">Changes to this policy</h2>
-          <p>We may update this policy as our services or legal obligations change. The current version always sits at this address, and the &ldquo;last updated&rdquo; date at the top tells you when it last changed. Where a change materially affects how we handle information you have already given us, we will take reasonable steps to tell you.</p>
+        <section id="conclusion" class="sec">
+          <p class="sec-num">06</p>
+          <h2 class="display t-h2 mt-2 text-ink">Conclusion</h2>
+          <p>We are committed to providing reliable, ethical, and high-quality educational consulting services to our clients. Your trust and satisfaction are of utmost importance to us. Thank you for choosing GooCampus Edu Solutions Pvt Ltd as your educational consulting partner.</p>
         </section>
 
       </div>
@@ -320,21 +195,12 @@ tailwind.config = {
         <div class="lg:sticky lg:top-[92px]">
           <h2 class="text-[13px] font-semibold uppercase tracking-[.08em] text-ink">Contents</h2>
           <nav class="toc mt-4 border-t border-line pt-2">
-            <a href="#who">01 &nbsp;Who we are</a>
-            <a href="#scope">02 &nbsp;Scope</a>
-            <a href="#collect">03 &nbsp;What we collect</a>
-            <a href="#how">04 &nbsp;How we use it</a>
-            <a href="#share">05 &nbsp;Who we share with</a>
-            <a href="#overseas">06 &nbsp;Overseas disclosure</a>
-            <a href="#cookies">07 &nbsp;Cookies</a>
-            <a href="#retention">08 &nbsp;How long we keep it</a>
-            <a href="#security">09 &nbsp;How we protect it</a>
-            <a href="#rights">10 &nbsp;Your rights</a>
-            <a href="#complaints">11 &nbsp;Complaints</a>
-            <a href="#practices">12 &nbsp;Admission practices</a>
-            <a href="#payments">13 &nbsp;Payment warning</a>
-            <a href="#contact">14 &nbsp;Contact</a>
-            <a href="#changes">15 &nbsp;Changes</a>
+            <a href="#intro">01 &nbsp;Introduction</a>
+            <a href="#collect">02 &nbsp;What we collect</a>
+            <a href="#practices">03 &nbsp;Admission practices</a>
+            <a href="#payments">04 &nbsp;Unauthorised payments</a>
+            <a href="#grievance">05 &nbsp;Grievance redressal</a>
+            <a href="#conclusion">06 &nbsp;Conclusion</a>
           </nav>
         </div>
       </aside>
