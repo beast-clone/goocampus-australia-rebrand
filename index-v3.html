@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 
+<script>document.documentElement.className+=" js";</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -81,8 +82,6 @@ tailwind.config = {
      Everything below the fold is static — no repeated per-section entrance.
      The resting state is VISIBLE; the entrance is animated *from* hidden. Nothing
      CSS-hides content waiting on JS, so a throttled or failed animation cannot strand it. */
-  .rise-in { animation:rise .9s cubic-bezier(.16,1,.3,1) both; }
-  @keyframes rise { from { opacity:0; transform:translateY(14px); filter:blur(6px); } }
 
   /* Feedback: the smallest change that makes cause and result unmistakable. */
   .lift { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1); }
@@ -94,8 +93,36 @@ tailwind.config = {
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
-    .rise-in { animation:none !important; }
     .lift:hover { transform:none; }
+  }
+  /* ── Motion ────────────────────────────────────────────────────────────
+     Same system as index.html. The resting state is VISIBLE: the hidden state
+     applies only under .js, which an inline script sets, and the observer falls
+     back to revealing everything when IntersectionObserver is missing or motion
+     is reduced. A blocked or failed script cannot leave the page blank. */
+  .js [data-reveal] { opacity:0; transform:translateY(22px); }
+  .js [data-reveal].in { opacity:1; transform:none;
+    transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+
+  .word { display:inline-block; }
+  .js .word { opacity:0; transform:translateY(26px); }
+  .js .word.in { opacity:1; transform:none;
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+
+  .arrow { display:inline-block; transition:transform .25s cubic-bezier(.16,1,.3,1); }
+  .linkcard:hover .arrow { transform:translateX(5px); }
+
+  .chip { transition:transform .2s cubic-bezier(.16,1,.3,1), border-color .2s, box-shadow .2s; }
+  .chip:hover { transform:translateY(-2px); border-color:rgba(1,33,105,.26);
+                box-shadow:0 10px 22px -16px rgba(1,33,105,.55); }
+
+  #nav nav a { position:relative; }
+  #nav nav a.active { color:#012169; }
+  #nav nav a.active::after { content:""; position:absolute; left:0; right:0; bottom:11px;
+    height:2px; background:#E4002B; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal], .js .word { opacity:1 !important; transform:none !important; transition:none !important; }
   }
 </style>
 </head>
@@ -143,17 +170,17 @@ tailwind.config = {
 <!-- Hero -->
 <section id="top" class="pt-16 pb-12 lg:pt-24 lg:pb-16">
   <div class="container text-center">
-    <h1 class="rise display t-h1 mx-auto max-w-[16ch] text-ink" style="animation-delay:.05s">
+    <h1 id="heroTitle" class="display t-h1 mx-auto max-w-[16ch] text-ink">
       Australia AMC MCQ Coaching Program
     </h1>
-    <p class="rise lead mx-auto mt-7 text-center" style="animation-delay:.16s">
+    <p data-reveal style="transition-delay:0.51s" class="lead mx-auto mt-7 text-center">
       Get 60+ hours of intensive, expert-led coaching with in-depth theory, live sessions, and mock exams to ensure you’re fully prepared for the AMC CAT.
     </p>
-    <div class="rise mt-9 flex flex-wrap items-center justify-center gap-3" style="animation-delay:.26s">
+    <div data-reveal style="transition-delay:0.61s" class="mt-9 flex flex-wrap items-center justify-center gap-3">
       <a href="#pricing" class="btn btn-cta w-full sm:w-auto">Pricing</a>
       <a href="#program" class="btn btn-ghost w-full sm:w-auto">Learn More</a>
     </div>
-    <p class="rise mt-8 text-[15px] text-body" style="animation-delay:.36s">
+    <p data-reveal style="transition-delay:0.71s" class="mt-8 text-[15px] text-body">
       Rated 4.9 out of 5 &nbsp;|&nbsp; Trusted by 300+ doctors from India
     </p>
   </div>
@@ -164,7 +191,7 @@ tailwind.config = {
   <div class="container">
     <!-- Generated via Magnific (seedream-5-pro), cropped to exactly 21:9 so the group sits
          centred and the browser does no further cropping. Stored locally, not hotlinked. -->
-    <figure class="rise photo-wrap aspect-[16/9] shadow-[0_2px_4px_-2px_rgba(1,33,105,.10),0_28px_64px_-30px_rgba(1,33,105,.40)]" style="animation-delay:.46s">
+    <figure data-reveal style="transition-delay:0.81s" class="photo-wrap aspect-[16/9] shadow-[0_2px_4px_-2px_rgba(1,33,105,.10),0_28px_64px_-30px_rgba(1,33,105,.40)]">
       <img id="heroArt" class="photo h-full w-full object-cover object-center" fetchpriority="high" decoding="async"
            alt="Three young Indian doctors working through study material together"
            src="assets/pillar-community.jpg" />
@@ -175,9 +202,9 @@ tailwind.config = {
 <!-- Why join this one -->
 <section class="py-12 lg:py-16">
   <div class="container">
-    <h2 class="display t-h2 max-w-[20ch] text-ink">There are so many courses. Why join this one?</h2>
+    <h2 data-reveal class="display t-h2 max-w-[20ch] text-ink">There are so many courses. Why join this one?</h2>
 
-    <div class="mt-10 grid gap-x-12 gap-y-10 lg:mt-12 lg:grid-cols-3">
+    <div data-stagger class="mt-10 grid gap-x-12 gap-y-10 lg:mt-12 lg:grid-cols-3">
       <div class="rule pt-7">
         <span class="mb-4 grid h-10 w-10 place-items-center rounded-btn bg-accent/10 text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></span>
         <h3 class="display t-h3 text-ink">High-Yield Focus</h3>
@@ -212,8 +239,8 @@ tailwind.config = {
 <!-- What else do you get -->
 <section id="program" class="bg-paper py-12 lg:py-16">
   <div class="container">
-    <h2 class="display t-h2 max-w-[16ch] text-ink">What else do you get?</h2>
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+    <h2 data-reveal class="display t-h2 max-w-[16ch] text-ink">What else do you get?</h2>
+    <div data-stagger class="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
       <div class="lift rounded-card bg-white p-7 ring-1 ring-black/[.06]">
         <span class="grid h-10 w-10 place-items-center rounded-btn bg-accent/10 text-accent"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></span>
         <h3 class="display mt-5 text-[19px] tracking-tight text-ink">Overview</h3>
@@ -279,7 +306,7 @@ tailwind.config = {
     <!-- Continuation of the same section: these four follow the twelve inclusions on the
          live page and have no heading of their own, so they stay inside this section. -->
     <div class="mt-14 space-y-14 border-t border-line pt-14 lg:mt-16 lg:space-y-20 lg:pt-16">
-      <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
         <!-- Generated via Magnific (seedream-5-pro), graded to match the hero. -->
         <figure class="photo-wrap aspect-[4/3] w-full max-w-[460px] justify-self-center lg:justify-self-start">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async" alt="Medical textbooks and tabbed study notes on a desk" src="assets/pillar-syllabus.jpg" />
@@ -293,7 +320,7 @@ tailwind.config = {
           </ul>
         </div>
       </div>
-      <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
         <!-- Generated via Magnific (seedream-5-pro), graded to match the hero. -->
         <figure class="photo-wrap aspect-[4/3] w-full max-w-[460px] justify-self-center lg:justify-self-start">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async" alt="A doctor watching a recorded lecture at home" src="assets/pillar-flexible.jpg" />
@@ -307,7 +334,7 @@ tailwind.config = {
           </ul>
         </div>
       </div>
-      <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
         <!-- Generated via Magnific (seedream-5-pro), graded to match the hero. -->
         <figure class="photo-wrap aspect-[4/3] w-full max-w-[460px] justify-self-center lg:justify-self-start">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async" alt="An answer sheet, pencil and clock set up for a practice exam" src="assets/pillar-exam.jpg" />
@@ -321,7 +348,7 @@ tailwind.config = {
           </ul>
         </div>
       </div>
-      <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
         <!-- Generated via Magnific (seedream-5-pro), graded to match the hero. -->
         <figure class="photo-wrap aspect-[4/3] w-full max-w-[460px] justify-self-center lg:justify-self-start">
           <img class="photo h-full w-full object-cover" loading="lazy" decoding="async" alt="Young Indian doctors together in a hospital" src="assets/pillar-team.jpg" />
@@ -343,8 +370,8 @@ tailwind.config = {
 <!-- Testimonials -->
 <section id="stories" class="bg-paper py-12 lg:py-16">
   <div class="container">
-    <h2 class="display t-h2 max-w-[18ch] text-ink">Trusted by thousands of doctors in India</h2>
-    <div class="mt-10 grid gap-5 md:grid-cols-2 lg:mt-12 lg:grid-cols-6">
+    <h2 data-reveal class="display t-h2 max-w-[18ch] text-ink">Trusted by thousands of doctors in India</h2>
+    <div data-stagger class="mt-10 grid gap-5 md:grid-cols-2 lg:mt-12 lg:grid-cols-6">
       <figure class="lift flex flex-col rounded-card border border-line bg-white p-8 lg:col-span-2">
         <blockquote class="text-[17px] leading-relaxed text-ink">“Amazing experience with GooCampus for AMC MCQ prep. Thanks to Dr. Balan &amp; team for guidance and support.”</blockquote>
         <figcaption class="mt-auto pt-7">
@@ -387,7 +414,7 @@ tailwind.config = {
 <!-- Pricing -->
 <section id="pricing" class="py-12 lg:py-16">
   <div class="container">
-    <h2 class="display t-h2 max-w-[18ch] text-ink">Crack the AMC Exams with our Expert Coaching</h2>
+    <h2 data-reveal class="display t-h2 max-w-[18ch] text-ink">Crack the AMC Exams with our Expert Coaching</h2>
     <p class="lead mt-5">Join the upcoming batch</p>
 
     <div class="mt-10 overflow-hidden rounded-card bg-ink lg:mt-12">
@@ -403,7 +430,7 @@ tailwind.config = {
           </a>
         </div>
         <div class="lg:border-l lg:border-white/10 lg:pl-16">
-          <div class="label text-zinc-500">Key things to note:</div>
+          <div class="label text-zinc-400">Key things to note:</div>
           <ul class="mt-5 space-y-3.5">
             <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>3-Month Structured Study Plan</span></li>
             <li class="flex gap-3 text-[15px] text-zinc-300"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Live Online Classes</span></li>
@@ -422,7 +449,7 @@ tailwind.config = {
   <div class="container">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
       <div class="lg:sticky lg:top-24 lg:self-start">
-        <h2 class="display t-h2 text-ink">Have a question? We are here to answer.</h2>
+        <h2 data-reveal class="display t-h2 text-ink">Have a question? We are here to answer.</h2>
         <p class="copy mt-5">Still confused? Don’t worry, just reach out.</p>
         <a href="https://wa.me/917483524565?text=I&#39;d%20like%20more%20information%20about%20the%20Australia%20AMC%20MCQ%20Coaching%20Program%20that&#39;s%20mentioned%20on%20your%20website." target="_blank" rel="noopener noreferrer" class="btn btn-ink mt-7 w-full sm:w-auto"><svg class="shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.4a.9.9 0 00-.6.3 2.6 2.6 0 00-.8 1.9A4.5 4.5 0 009 12a10.2 10.2 0 003.9 3.4 9.6 9.6 0 001.3.5 3.1 3.1 0 001.4.1 2.4 2.4 0 001.5-1.1 1.9 1.9 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>Send us a WhatsApp</a>
       </div>
@@ -484,7 +511,7 @@ tailwind.config = {
 <section class="py-12 lg:py-16">
   <div class="container">
     <div class="rounded-xl2 bg-ink px-8 py-16 text-center lg:px-16 lg:py-20">
-      <h2 class="display t-h2 mx-auto max-w-[16ch] text-white">Ready to start your AMC journey?</h2>
+      <h2 data-reveal class="display t-h2 mx-auto max-w-[16ch] text-white">Ready to start your AMC journey?</h2>
       <div class="mt-9 flex justify-center">
         <a href="https://goocampus.fillout.com/goocampus-free-consultation" class="btn btn-cta w-full sm:w-auto">Schedule Free Consultation</a>
       </div>
@@ -537,135 +564,78 @@ tailwind.config = {
 </footer>
 
 <script>
-  const t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
-  t && t.addEventListener('click', () => {
-    const open = m.classList.toggle('hidden') === false;
-    t.setAttribute('aria-expanded', String(open));
-  });
-  m && m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    m.classList.add('hidden'); t.setAttribute('aria-expanded', 'false');
-  }));
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canObserve = 'IntersectionObserver' in window;
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Nav condenses once you leave the hero — continuity, not decoration.
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('condensed', window.scrollY > 24);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // ---- Accordion: animate height so opening/closing is legible instead of snapping ----
-  document.querySelectorAll('details.acc').forEach(d => {
-    const panel = d.querySelector('.acc-panel');
-    if (!panel) return;
-    if (d.open) panel.style.height = 'auto';
-    else panel.style.height = '0px';
-    d.addEventListener('click', (e) => {
-      if (!e.target.closest('summary')) return;
-      e.preventDefault();
-      const opening = !d.open;
-      if (opening) {
-        d.open = true;
-        const h = panel.scrollHeight;
-        panel.style.height = '0px';
-        panel.animate([{ height: '0px' }, { height: h + 'px' }],
-          { duration: reduce ? 0 : 320, easing: 'cubic-bezier(.16,1,.3,1)' })
-          .onfinish = () => { panel.style.height = 'auto'; };
-      } else {
-        const h = panel.scrollHeight;
-        panel.animate([{ height: h + 'px' }, { height: '0px' }],
-          { duration: reduce ? 0 : 240, easing: 'cubic-bezier(.4,0,1,1)' })
-          .onfinish = () => { panel.style.height = '0px'; d.open = false; };
-      }
+  var title = document.getElementById('heroTitle');
+  if (title && !reduce) {
+    var ws = title.textContent.trim().split(/\s+/);
+    title.textContent = '';
+    var spans = ws.map(function(w, i){
+      var sp = document.createElement('span');
+      sp.className = 'word'; sp.textContent = w;
+      sp.style.transitionDelay = (0.06 * i) + 's';
+      title.appendChild(sp);
+      if (i < ws.length - 1) title.appendChild(document.createTextNode(' '));
+      return sp;
     });
-  });
-
-  // ---- The hero entrance. Pure CSS, and the resting state is already visible,
-  //      so a failed or throttled animation can never strand the content. ----
-  const risers = document.querySelectorAll('.rise');
-  const play = () => risers.forEach(el => el.classList.add('rise-in'));
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(play); else play();
-
-  // `animation-fill-mode: both` applies the from-state (opacity 0) before the animation
-  // starts, so a throttled or never-started animation would strand the hero invisible.
-  // This runs regardless of GSAP and clears the animation if it has not resolved.
-  setTimeout(() => {
-    risers.forEach(el => {
-      if (parseFloat(getComputedStyle(el).opacity) < 0.99) {
-        el.style.animation = 'none';
-        el.style.opacity = 1;
-        el.style.transform = 'none';
-        el.style.filter = 'none';
-      }
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ spans.forEach(function(s){ s.classList.add('in'); }); });
     });
-  }, 1800);
-
-  // ---- Scroll-linked motion. Progressive enhancement only: nothing below is
-  //      required for the page to be readable, and nothing is hidden until GSAP
-  //      is confirmed loaded. ----
-  function loadGSAP(cb) {
-    const s1 = document.createElement('script');
-    s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
-    s1.onerror = () => {};
-    s1.onload = () => {
-      const s2 = document.createElement('script');
-      s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
-      s2.onerror = () => {}; s2.onload = cb;
-      document.head.appendChild(s2);
-    };
-    document.head.appendChild(s1);
   }
 
-  if (!reduce) loadGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Depth on the hero image: the scroll relationship IS the meaning here.
-    const art = document.getElementById('heroArt');
-    if (art) gsap.fromTo(art, { yPercent: -6, scale: 1.1 }, {
-      yPercent: 6, scale: 1.1, ease: 'none',
-      scrollTrigger: { trigger: art.closest('figure'), start: 'top bottom', end: 'bottom top', scrub: true }
+  document.querySelectorAll('[data-stagger]').forEach(function(group){
+    Array.prototype.forEach.call(group.children, function(child, i){
+      child.setAttribute('data-reveal', '');
+      child.style.transitionDelay = Math.min(i * 0.07, 0.45) + 's';
     });
-
-    // Reveals are driven by IntersectionObserver, not ScrollTrigger.
-    // ScrollTrigger caches element positions and needs refresh() when layout shifts;
-    // if those positions go stale the callback never fires and the content stays
-    // invisible. IntersectionObserver asks the browser directly, so it cannot
-    // desynchronise from layout. GSAP still does the actual animating.
-    const revealTargets = gsap.utils.toArray('#program .lift, #stories figure, section .rule');
-
-    if (revealTargets.length && 'IntersectionObserver' in window) {
-      gsap.set(revealTargets, { opacity: 0, y: 16 });
-
-      const io = new IntersectionObserver((entries, obs) => {
-        const batch = entries.filter(e => e.isIntersecting).map(e => e.target);
-        if (!batch.length) return;
-        gsap.to(batch, {
-          opacity: 1, y: 0, duration: .55, ease: 'power3.out',
-          stagger: Math.min(.06, .4 / batch.length), overwrite: true
-        });
-        batch.forEach(el => obs.unobserve(el));
-      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
-
-      revealTargets.forEach(el => io.observe(el));
-    }
-
-    // Deliberately NOT animating the price. A count-up makes the figure read as a
-    // different number while it runs (caught at "AU$ 51" in testing), and a price is
-    // something a visitor must be able to read correctly at any instant.
-
-    // Late images change layout; recompute rather than firing against stale offsets.
-    addEventListener('load', () => ScrollTrigger.refresh());
-
-    // Safety net: anything on screen should have revealed by now.
-    setTimeout(() => {
-      revealTargets.forEach(el => {
-        const r = el.getBoundingClientRect();
-        if (r.top < innerHeight && r.bottom > 0 && parseFloat(getComputedStyle(el).opacity) < 0.99) {
-          gsap.killTweensOf(el);
-          el.style.opacity = 1; el.style.transform = 'none';
-        }
-      });
-    }, 3000);
   });
+
+  var targets = document.querySelectorAll('[data-reveal]');
+
+  if (!canObserve || reduce) {
+    targets.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+    targets.forEach(function(el){ io.observe(el); });
+
+    /* Last-resort net: if the observer never fires, content must not stay hidden. */
+    setTimeout(function(){ targets.forEach(function(el){ el.classList.add('in'); }); }, 3500);
+  }
+
+  var nav = document.getElementById('nav');
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav nav a[href^="#"]'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function onScroll(){
+    if (nav) nav.classList.toggle('condensed', scrollY > 8);
+    var best = -1, bestTop = -Infinity;
+    sections.forEach(function(sec, i){
+      if (!sec) return;
+      var top = sec.getBoundingClientRect().top - 140;
+      if (top <= 0 && top > bestTop) { bestTop = top; best = i; }
+    });
+    links.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+  if (t && m) {
+    t.addEventListener('click', function(){
+      var open = m.classList.toggle('hidden') === false;
+      t.setAttribute('aria-expanded', String(open));
+    });
+    m.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ m.classList.add('hidden'); t.setAttribute('aria-expanded','false'); });
+    });
+  }
+})();
 </script>
+
 </body>
 </html>
