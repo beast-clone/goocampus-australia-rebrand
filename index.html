@@ -76,6 +76,7 @@
 }
 </script>
 
+<script>document.documentElement.className+=" js";</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -135,6 +136,59 @@ tailwind.config = {
      without changing how they look. */
   #nav nav a, #mobileMenu a:not(.btn), footer ul a { display:inline-flex; align-items:center; min-height:44px; }
 
+  /* ── Motion ────────────────────────────────────────────────────────────
+     The resting state is VISIBLE. The hidden state applies only under .js,
+     which an inline script sets, and the observer falls back to revealing
+     everything if IntersectionObserver is missing or motion is reduced — so
+     a blocked or failed script can never leave the page blank. */
+  .js [data-reveal] { opacity:0; transform:translateY(22px); }
+  .js [data-reveal].in { opacity:1; transform:none;
+    transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+
+  /* Hero headline resolves word by word — the one showpiece moment. */
+  .word { display:inline-block; }
+  .js .word { opacity:0; transform:translateY(26px); }
+  .js .word.in { opacity:1; transform:none;
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+
+  /* A soft wash so the hero is not flat paper behind flat type. */
+  .hero-wash { position:absolute; inset:0 0 auto; height:620px; z-index:-1; pointer-events:none;
+    background:radial-gradient(58% 60% at 50% -10%, rgba(1,33,105,.09), rgba(1,33,105,0) 70%); }
+
+  /* Small uppercase text takes a deeper red than the brand #E4002B: that red is
+     4.52:1 on the paper ground, a 0.02 margin over the 4.5 floor. #C4001F is
+     5.81:1 and indistinguishable at 12px. The 2px rule stays brand red — as a
+     graphic it only needs 3:1. */
+  .eyebrow { display:inline-flex; align-items:center; gap:.7rem; font-size:12px; font-weight:600;
+             letter-spacing:.14em; text-transform:uppercase; color:#C4001F; }
+  .eyebrow::before { content:""; width:24px; height:2px; background:#E4002B; flex:none; }
+
+  /* Assess -> Progress is a real sequence, so the rule fills in order as the
+     six steps arrive. Decoration that carries the meaning of the section. */
+  .step { position:relative; }
+  .step::after { content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+    background:#E4002B; transform:scaleX(0); transform-origin:left;
+    transition:transform .55s cubic-bezier(.16,1,.3,1); }
+  .step.in::after { transform:scaleX(1); }
+
+  .arrow { display:inline-block; transition:transform .25s cubic-bezier(.16,1,.3,1); }
+  .linkcard:hover .arrow { transform:translateX(5px); }
+
+  .chip { transition:transform .2s cubic-bezier(.16,1,.3,1), border-color .2s, box-shadow .2s; }
+  .chip:hover { transform:translateY(-2px); border-color:rgba(1,33,105,.26);
+                box-shadow:0 10px 22px -16px rgba(1,33,105,.55); }
+
+  /* Which section you are in, shown in the nav. */
+  #nav nav a { position:relative; }
+  #nav nav a.active { color:#012169; }
+  #nav nav a.active::after { content:""; position:absolute; left:0; right:0; bottom:11px;
+    height:2px; background:#E4002B; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal], .js .word { opacity:1 !important; transform:none !important; transition:none !important; }
+    .step::after { transform:scaleX(1) !important; transition:none !important; }
+  }
+
   .photo-wrap { position:relative; overflow:hidden; border-radius:16px; background:#E8EAF0; }
   .photo-wrap::before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
     border-radius:inherit; box-shadow:inset 0 0 0 1px rgba(1,33,105,.08); }
@@ -149,15 +203,7 @@ tailwind.config = {
   /* Assess -> Plan -> ... is a genuine ordered process, so it is numbered.
      Nothing else on the page is. */
   .step-n { font-variation-settings:'opsz' 32; font-weight:500; font-size:13px; letter-spacing:.14em;
-            text-transform:uppercase; color:#E4002B; }
-
-  /* Both keyframe stops are written out. With fill-mode `both` and only a `from`,
-     a throttled or blocked animation can strand the element at opacity 0. */
-  .rise-in { animation:rise .9s cubic-bezier(.16,1,.3,1) both; }
-  @keyframes rise {
-    from { opacity:0; transform:translateY(14px); filter:blur(6px); }
-    to   { opacity:1; transform:none; filter:none; }
-  }
+            text-transform:uppercase; color:#C4001F; }
 
   .lift { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1); }
   .lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(1,33,105,.4); }
@@ -181,7 +227,7 @@ tailwind.config = {
        class="font-semibold text-white underline underline-offset-4 hover:text-white/80">Download Free Brochure</a>
   </span>
   <button onclick="document.getElementById('announce').remove()" aria-label="Dismiss announcement"
-          class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
+          class="absolute right-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center text-white/60 transition hover:text-white">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
 </div>
@@ -220,20 +266,21 @@ tailwind.config = {
 </header>
 
 <!-- Hero -->
-<section id="top" class="pt-16 pb-12 lg:pt-24 lg:pb-16">
+<section id="top" class="relative pt-16 pb-12 lg:pt-24 lg:pb-16">
+  <div class="hero-wash" aria-hidden="true"></div>
   <div class="container text-center">
-    <h1 class="rise-in display t-h1 mx-auto max-w-[15ch] text-ink" style="animation-delay:.05s">Become a Doctor in Australia</h1>
-    <p class="rise-in lead mx-auto mt-7 text-center" style="animation-delay:.16s">
+    <h1 id="heroTitle" class="display t-h1 mx-auto max-w-[15ch] text-ink">Become a Doctor in Australia</h1>
+    <p data-reveal style="transition-delay:.45s" class="lead mx-auto mt-7 text-center">
       Comprehensive consulting services for your Australia medical pathway.
     </p>
-    <div class="rise-in mt-9 flex flex-wrap items-center justify-center gap-3" style="animation-delay:.26s">
+    <div data-reveal style="transition-delay:.58s" class="mt-9 flex flex-wrap items-center justify-center gap-3">
       <a href="https://goocampus.fillout.com/goocampus-free-consultation" target="_blank" rel="noopener noreferrer" class="btn btn-cta">Download Free Brochure</a>
       <a href="#program" class="btn btn-ghost">See what's included</a>
     </div>
   </div>
 
   <div class="container mt-14 lg:mt-20">
-    <figure class="photo-wrap rise-in" style="animation-delay:.34s">
+    <figure data-reveal style="transition-delay:.7s" class="photo-wrap">
       <img src="assets/doctors-hero.jpg" width="1600" height="686" fetchpriority="high" decoding="async"
            alt="A group of Indian doctors in white coats in a bright modern hospital"
            class="h-full w-full object-cover" />
@@ -245,8 +292,11 @@ tailwind.config = {
 <section class="py-16 lg:py-24">
   <div class="container">
     <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-      <h2 class="display t-h2 text-ink">Who We Are</h2>
-      <p class="copy text-[17px] leading-[29px]">
+      <div data-reveal>
+        <p class="eyebrow">About GooCampus</p>
+        <h2 class="display t-h2 mt-4 text-ink">Who We Are</h2>
+      </div>
+      <p data-reveal style="transition-delay:.1s" class="copy text-[17px] leading-[29px]">
         GooCampus is a medical career consulting and training firm helping doctors plan their PG path abroad —
         across Australia, the Gulf, UK, and USA. We guide you through registration, exam prep, documentation,
         and career readiness, end to end.
@@ -258,8 +308,11 @@ tailwind.config = {
 <!-- Why Choose GooCampus -->
 <section class="border-y border-line bg-white py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 max-w-[18ch] text-ink">Why Choose GooCampus?</h2>
-    <div class="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div data-reveal>
+      <p class="eyebrow">The difference</p>
+      <h2 class="display t-h2 mt-4 max-w-[18ch] text-ink">Why Choose GooCampus?</h2>
+    </div>
+    <div data-stagger class="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
       <div><h3 class="display t-h3 text-ink">Built around your profile</h3><p class="copy mt-3">A pathway plan built around your profile — not a one-size-fits-all bundle.</p></div>
       <div><h3 class="display t-h3 text-ink">One-on-one guidance</h3><p class="copy mt-3">Across registration, exams, and documentation.</p></div>
       <div><h3 class="display t-h3 text-ink">Doctors based in Australia</h3><p class="copy mt-3">Guidance from doctors currently based in Australia.</p></div>
@@ -273,8 +326,11 @@ tailwind.config = {
 <!-- Introducing the Standard Consulting Program -->
 <section id="program" class="py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 max-w-[22ch] text-ink">Introducing the Standard Consulting Program</h2>
-    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+    <div data-reveal>
+      <p class="eyebrow">The programme</p>
+      <h2 class="display t-h2 mt-4 max-w-[22ch] text-ink">Introducing the Standard Consulting Program</h2>
+    </div>
+    <div data-stagger class="mt-12 grid gap-5 lg:grid-cols-3">
       <article class="card lift p-7">
         <h3 class="display t-h3 text-ink">Personalised Pathway Planning</h3>
         <p class="copy mt-3">A roadmap built around your qualifications, specialty, and goals — not a generic checklist.</p>
@@ -294,9 +350,12 @@ tailwind.config = {
 <!-- What's Included -->
 <section class="border-y border-line bg-white py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 text-ink">What's Included</h2>
+    <div data-reveal>
+      <p class="eyebrow">What you get</p>
+      <h2 class="display t-h2 mt-4 text-ink">What's Included</h2>
+    </div>
 
-    <div class="mt-12 grid gap-x-12 gap-y-11 lg:grid-cols-2">
+    <div data-stagger class="mt-12 grid gap-x-12 gap-y-11 lg:grid-cols-2">
       <div>
         <h3 class="display t-h3 text-ink">Career Strategy &amp; Planning</h3>
         <ul class="ticks mt-4">
@@ -359,8 +418,11 @@ tailwind.config = {
 <!-- Everything You Need -->
 <section class="py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 max-w-[20ch] text-ink">Everything You Need, In One Program</h2>
-    <div class="mt-10 flex flex-wrap gap-3">
+    <div data-reveal>
+      <p class="eyebrow">One programme</p>
+      <h2 class="display t-h2 mt-4 max-w-[20ch] text-ink">Everything You Need, In One Program</h2>
+    </div>
+    <div data-stagger class="mt-10 flex flex-wrap gap-3">
       <span class="chip">Personalised pathway planning</span>
       <span class="chip">Registration &amp; documentation support</span>
       <span class="chip">Exam &amp; study guidance</span>
@@ -377,21 +439,22 @@ tailwind.config = {
 <section class="border-y border-line bg-white py-16 lg:py-24">
   <div class="container">
     <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
-      <div>
-        <h2 class="display t-h2 text-ink">How We Work With You</h2>
+      <div data-reveal>
+        <p class="eyebrow">The method</p>
+        <h2 class="display t-h2 mt-4 text-ink">How We Work With You</h2>
         <p class="copy mt-6">
           Every doctor's pathway looks different — so instead of a fixed checklist, we assess where you stand,
           plan the right steps for your profile, prioritise what matters most, help you execute it, review your
           progress regularly, and keep you moving forward.
         </p>
       </div>
-      <ol class="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-        <li class="bg-white p-6"><p class="step-n">Step 01</p><h3 class="display t-h3 mt-2 text-ink">Assess</h3></li>
-        <li class="bg-white p-6"><p class="step-n">Step 02</p><h3 class="display t-h3 mt-2 text-ink">Plan</h3></li>
-        <li class="bg-white p-6"><p class="step-n">Step 03</p><h3 class="display t-h3 mt-2 text-ink">Prioritise</h3></li>
-        <li class="bg-white p-6"><p class="step-n">Step 04</p><h3 class="display t-h3 mt-2 text-ink">Execute</h3></li>
-        <li class="bg-white p-6"><p class="step-n">Step 05</p><h3 class="display t-h3 mt-2 text-ink">Review</h3></li>
-        <li class="bg-white p-6"><p class="step-n">Step 06</p><h3 class="display t-h3 mt-2 text-ink">Progress</h3></li>
+      <ol data-stagger class="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+        <li class="step bg-white p-6"><p class="step-n">Step 01</p><h3 class="display t-h3 mt-2 text-ink">Assess</h3></li>
+        <li class="step bg-white p-6"><p class="step-n">Step 02</p><h3 class="display t-h3 mt-2 text-ink">Plan</h3></li>
+        <li class="step bg-white p-6"><p class="step-n">Step 03</p><h3 class="display t-h3 mt-2 text-ink">Prioritise</h3></li>
+        <li class="step bg-white p-6"><p class="step-n">Step 04</p><h3 class="display t-h3 mt-2 text-ink">Execute</h3></li>
+        <li class="step bg-white p-6"><p class="step-n">Step 05</p><h3 class="display t-h3 mt-2 text-ink">Review</h3></li>
+        <li class="step bg-white p-6"><p class="step-n">Step 06</p><h3 class="display t-h3 mt-2 text-ink">Progress</h3></li>
       </ol>
     </div>
   </div>
@@ -400,24 +463,27 @@ tailwind.config = {
 <!-- Additional Services -->
 <section class="py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 text-ink">What Else May You Need?</h2>
-    <p class="copy mt-5">Focused programmes that sit alongside the Standard Consulting Program.</p>
-    <div class="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      <a href="index-v3.html" class="card lift flex flex-col p-7">
+    <div data-reveal>
+      <p class="eyebrow">Alongside the programme</p>
+      <h2 class="display t-h2 mt-4 text-ink">What Else May You Need?</h2>
+      <p class="copy mt-5">Focused programmes that sit alongside the Standard Consulting Program.</p>
+    </div>
+    <div data-stagger class="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="index-v3.html" class="card lift linkcard flex flex-col p-7">
         <h3 class="display t-h3 text-ink">AMC MCQ Training</h3>
         <p class="copy mt-3 flex-1">60+ hours of intensive, expert-led coaching for the AMC CAT.</p>
-        <span class="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent">View the programme &rarr;</span>
+        <span class="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent">View the programme <span class="arrow">&rarr;</span></span>
       </a>
-      <a href="amc-clinical.html" class="card lift flex flex-col p-7">
+      <a href="amc-clinical.html" class="card lift linkcard flex flex-col p-7">
         <h3 class="display t-h3 text-ink">AMC Clinical Training</h3>
         <p class="copy mt-3 flex-1">Structured preparation for the AMC Clinical examination.</p>
-        <span class="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent">View the programme &rarr;</span>
+        <span class="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent">View the programme <span class="arrow">&rarr;</span></span>
       </a>
-      <div class="card p-7">
+      <div class="card lift p-7">
         <h3 class="display t-h3 text-ink">Portfolio Building Activities</h3>
         <p class="copy mt-3">Strengthening the profile you present at registration and at interview.</p>
       </div>
-      <div class="card p-7">
+      <div class="card lift p-7">
         <h3 class="display t-h3 text-ink">Other Potential Investments</h3>
         <p class="copy mt-3">Additional costs your counsellor will walk you through as they arise.</p>
       </div>
@@ -428,25 +494,28 @@ tailwind.config = {
 <!-- Testimonials -->
 <section class="border-y border-line bg-white py-16 lg:py-24">
   <div class="container">
-    <h2 class="display t-h2 text-ink">What Our Doctors Say</h2>
-    <div class="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <figure class="card p-7">
+    <div data-reveal>
+      <p class="eyebrow">Testimonials</p>
+      <h2 class="display t-h2 mt-4 text-ink">What Our Doctors Say</h2>
+    </div>
+    <div data-stagger class="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <figure class="card lift p-7">
         <blockquote><p class="text-[16px] leading-[27px] text-ink">&ldquo;Amazing experience with GooCampus for AMC MCQ prep. Thanks to Dr. Balan &amp; team for guidance and support.&rdquo;</p></blockquote>
         <figcaption class="rule mt-6 pt-5"><span class="block text-[15px] font-semibold text-ink">Dr. Bhargavi N</span><span class="text-[13px] text-body">Australia AMC Aspirant</span></figcaption>
       </figure>
-      <figure class="card p-7">
+      <figure class="card lift p-7">
         <blockquote><p class="text-[16px] leading-[27px] text-ink">&ldquo;Grateful for GooCampus&rsquo; support throughout my AMC journey. Dr. Balan and Dr. Manas were always helpful.&rdquo;</p></blockquote>
         <figcaption class="rule mt-6 pt-5"><span class="block text-[15px] font-semibold text-ink">Dr. Jasmine Kaur</span><span class="text-[13px] text-body">Australia AMC Aspirant</span></figcaption>
       </figure>
-      <figure class="card p-7">
+      <figure class="card lift p-7">
         <blockquote><p class="text-[16px] leading-[27px] text-ink">&ldquo;GooCampus helped me tremendously in AMC exam prep. Weekly check-ins and right materials led to success.&rdquo;</p></blockquote>
         <figcaption class="rule mt-6 pt-5"><span class="block text-[15px] font-semibold text-ink">Dr. Gunjala Rohith</span><span class="text-[13px] text-body">Australia AMC Aspirant</span></figcaption>
       </figure>
-      <figure class="card p-7">
+      <figure class="card lift p-7">
         <blockquote><p class="text-[16px] leading-[27px] text-ink">&ldquo;GooCampus is professional and organized. My daughter cleared AMC-1 on her first attempt, thanks to the team.&rdquo;</p></blockquote>
         <figcaption class="rule mt-6 pt-5"><span class="block text-[15px] font-semibold text-ink">Dr. Bhavesh Swarnkar</span><span class="text-[13px] text-body">Australia AMC Aspirant</span></figcaption>
       </figure>
-      <figure class="card p-7">
+      <figure class="card lift p-7">
         <blockquote><p class="text-[16px] leading-[27px] text-ink">&ldquo;Exceptional experience with GooCampus. Faculty provided personalized attention and feedback.&rdquo;</p></blockquote>
         <figcaption class="rule mt-6 pt-5"><span class="block text-[15px] font-semibold text-ink">Dr. Bavleen</span><span class="text-[13px] text-body">Australia AMC Aspirant</span></figcaption>
       </figure>
@@ -457,7 +526,7 @@ tailwind.config = {
 <!-- Final CTA -->
 <section class="py-16 lg:py-24">
   <div class="container">
-    <div class="rounded-xl2 bg-ink px-8 py-14 text-center lg:px-16 lg:py-20">
+    <div data-reveal class="rounded-xl2 bg-ink px-8 py-14 text-center lg:px-16 lg:py-20">
       <h2 class="display t-h2 mx-auto max-w-[20ch] text-white">Start Your Australia Medical Career Today</h2>
       <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
         <a href="https://goocampus.fillout.com/goocampus-free-consultation" target="_blank" rel="noopener noreferrer" class="btn btn-cta">Download Free Brochure</a>
@@ -504,9 +573,97 @@ tailwind.config = {
 </footer>
 
 <script>
-  var nav = document.getElementById('nav');
-  addEventListener('scroll', function(){ nav.classList.toggle('condensed', scrollY > 8); }, { passive: true });
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canObserve = 'IntersectionObserver' in window;
 
+  /* Hero headline, word by word. Wrapped here rather than in the markup so a
+     blocked script leaves ordinary readable text behind. */
+  var title = document.getElementById('heroTitle');
+  var words = [];
+  if (title && !reduce) {
+    words = title.textContent.trim().split(/\s+/);
+    title.textContent = '';
+    words = words.map(function(w, i){
+      var sp = document.createElement('span');
+      sp.className = 'word';
+      sp.textContent = w;
+      sp.style.transitionDelay = (0.06 * i) + 's';
+      title.appendChild(sp);
+      if (i < words.length - 1) title.appendChild(document.createTextNode(' '));
+      return sp;
+    });
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ words.forEach(function(w){ w.classList.add('in'); }); });
+    });
+  }
+
+  /* Stagger children of any [data-stagger] group, then treat them as reveals. */
+  document.querySelectorAll('[data-stagger]').forEach(function(group){
+    Array.prototype.forEach.call(group.children, function(child, i){
+      child.setAttribute('data-reveal', '');
+      child.style.transitionDelay = Math.min(i * 0.07, 0.45) + 's';
+    });
+  });
+
+  var targets = document.querySelectorAll('[data-reveal]');
+
+  /* No observer, or the user asked for less motion: show everything at once.
+     Nothing is left depending on a scroll event that may never fire. */
+  if (!canObserve || reduce) {
+    targets.forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.step').forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+    targets.forEach(function(el){ io.observe(el); });
+
+    /* The six process steps fill their rule in order, so the sequence reads as
+       a sequence rather than six things arriving at once. */
+    /* Last-resort safety net. If the observer never fires — a hidden tab that
+       is never revealed, an odd layout, a browser quirk — the content must not
+       stay invisible. After 3.5s everything is shown regardless. */
+    setTimeout(function(){
+      targets.forEach(function(el){ el.classList.add('in'); });
+      document.querySelectorAll('.step').forEach(function(el){ el.classList.add('in'); });
+    }, 3500);
+
+    var steps = document.querySelectorAll('.step');
+    if (steps.length) {
+      var sio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (!e.isIntersecting) return;
+          var i = Array.prototype.indexOf.call(steps, e.target);
+          setTimeout(function(){ e.target.classList.add('in'); }, i * 110);
+          sio.unobserve(e.target);
+        });
+      }, { threshold: 0.4 });
+      steps.forEach(function(el){ sio.observe(el); });
+    }
+  }
+
+  /* Nav: condense on scroll, and show which section you are reading. */
+  var nav = document.getElementById('nav');
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav nav a[href^="#"]'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  function onScroll(){
+    nav.classList.toggle('condensed', scrollY > 8);
+    var best = -1, bestTop = -Infinity;
+    sections.forEach(function(sec, i){
+      if (!sec) return;
+      var top = sec.getBoundingClientRect().top - 140;
+      if (top <= 0 && top > bestTop) { bestTop = top; best = i; }
+    });
+    links.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile menu */
   var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
   t.addEventListener('click', function(){
     var open = m.classList.toggle('hidden') === false;
@@ -515,6 +672,7 @@ tailwind.config = {
   m.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ m.classList.add('hidden'); t.setAttribute('aria-expanded','false'); });
   });
+})();
 </script>
 
 </body>
