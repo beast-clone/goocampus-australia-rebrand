@@ -116,6 +116,13 @@ tailwind.config = {
   .chip:hover { transform:translateY(-2px); border-color:rgba(1,33,105,.26);
                 box-shadow:0 10px 22px -16px rgba(1,33,105,.55); }
 
+  /* Nav and footer links are text-sized, which leaves a 19-23px tap target —
+     under the 24px AA floor for the footer list. Give them a real hit area
+     without changing how they look. The 44px box is also what the active
+     underline below is measured from: without it the bar lands mid-text and
+     reads as a strikethrough. */
+  #nav nav a, #mobileMenu a:not(.btn), footer ul a { display:inline-flex; align-items:center; min-height:44px; }
+
   #nav nav a { position:relative; }
   #nav nav a.active { color:#012169; }
   #nav nav a.active::after { content:""; position:absolute; left:0; right:0; bottom:11px;
