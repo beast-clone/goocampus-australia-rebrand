@@ -123,10 +123,14 @@ tailwind.config = {
      reads as a strikethrough. */
   #nav nav a, #mobileMenu a:not(.btn), footer ul a { display:inline-flex; align-items:center; min-height:44px; }
 
-  #nav nav a { position:relative; }
-  #nav nav a.active { color:#012169; }
-  #nav nav a.active::after { content:""; position:absolute; left:0; right:0; bottom:11px;
-    height:2px; background:#E4002B; }
+  /* The active-section marker is a real underline on the text, not a bar
+     positioned inside the link box. An absolutely-positioned bar has to be
+     offset from the box edge, which silently becomes a strikethrough if the
+     box height ever changes; text-decoration tracks the text itself and
+     cannot. */
+  #nav nav a.active { color:#012169; text-decoration:underline; text-decoration-color:#E4002B;
+    text-decoration-thickness:2px; text-underline-offset:7px;
+    text-decoration-skip-ink:none; }
 
   @media (prefers-reduced-motion: reduce) {
     .js [data-reveal], .js .word { opacity:1 !important; transform:none !important; transition:none !important; }
